@@ -48,7 +48,7 @@ class C_principal extends CI_Controller {
 	{
 		$session_data = $this->session->userdata('logged_in');     
 		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='acuaponicoChinanpero_view';
+		$data['contenido']='acuaponico_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
 
@@ -60,15 +60,15 @@ class C_principal extends CI_Controller {
 		$this->load->view('productosAdmin_view',$data); 
 	}
 
-	public function biodiesel()
+	public function saar()
 	{
 		$session_data = $this->session->userdata('logged_in');     
 		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='microplantaBiodiesel_view';
+		$data['contenido']='saar_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
 
-	public function eolico()
+	public function users()
 	{
 		$session_data = $this->session->userdata('logged_in');     
 		$data['nombre'] = $session_data['nombre'];

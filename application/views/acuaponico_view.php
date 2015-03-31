@@ -63,14 +63,13 @@
 
 
 
-
 <a class="btn btn-small pull-right" href="<?php echo site_url('cprincipal') ?>"><i class="icon-arrow-left"></i> Regresar</a>
 <div class="row-fluid">
-  <h3>Eólico</h3>                                      
+    <h3>Acuaponia</h3>                    
   <ul class="thumbnails">
     <li class="span6">
       <div class="thumbnail">
-        <a class="thumbnail" href="<?php echo site_url('alarmas_eolico') ?>">
+        <a class="thumbnail" href="<?php echo site_url('alarmas_acuaponia') ?>">
             <img alt="260x180" data-src="holder.js/260x180" src="<?php echo base_url();?>img/alarmas.png"></img>
         </a>
         
@@ -81,7 +80,7 @@
     </li>
     <li class="span6">
       <div class="thumbnail">
-        <a class="thumbnail" href="<?php echo site_url('reportesEolico') ?>">
+        <a class="thumbnail" href="<?php echo site_url('reportesAcuaponia') ?>">
             <img alt="260x180" data-src="holder.js/260x180" src="<?php echo base_url();?>img/reporte.png"></img>
         </a>
         <div class="caption">
@@ -97,7 +96,7 @@
   <ul class="thumbnails">
     <li class="span6">
       <div class="thumbnail">
-        <a class="thumbnail" href="<?php echo site_url('graphs_eolico') ?>">
+        <a class="thumbnail" href="<?php echo site_url('graphs_acuaponia') ?>">
             <img alt="260x180" data-src="holder.js/260x180" src="<?php echo base_url();?>img/graphs.png"></img>
         </a>
         
@@ -117,5 +116,5 @@
       </div>
     </li>             
   </ul>                  
-</div>   
-<a class="btn btn-small" href="<?php echo site_url('cprincipal') ?>"><i class="icon-arrow-left"></i> Regresar</a>                          
+</div>
+<a class="btn btn-small" href="<?php echo site_url('cprincipal') ?>"><i class="icon-arrow-left"></i> Regresar</a>
