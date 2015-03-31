@@ -1,0 +1,10 @@
+El sistema de monitoreo de productos piloto de sustentabilidad social recolecta cada uno de los valores enviados por cada una de las maquinas mayores para su interpretacion en forma de reportes, gráficos, alarmas, etc, mismos que son utilizados por el usuario final de manera que puedan ser de apoyo para la toma de desiciones.
+
+El proyecto fue desarrollado utilizando un framework codeigniter basado en lenguaje php y en el contiene varias carpetas en las que destacan los archivos php, los estilos css y los scripts js, a continuación se da una pequeña descripción de cada uno de los archivos.
+Dentro de la carpeta Application se encuentran 3 carpetas que son los modelos, las vistas y los controles.
+Models, contiene la definicion de las clases que se utilizaron.
+Controllers, contiene aquellas funciones que fueron requeridas para acceder a los datos de la base de datos.
+View, contiene todos los archivos escritos con etiquetas de html y que muestran los datos recolectados en el control.
+
+js, contiene todos los archivos javascript mismos que proporcionan la animación a cada una de las etiquetas de html.
+css, contiene todas las hojas de estilo en donde se incluyen los colores, fuentes y en general los estilos que fueron agregados a cada una de las etiquetas.
