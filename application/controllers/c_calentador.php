@@ -1,82 +1,117 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class C_principal extends CI_Controller {
+class C_calentador extends CI_Controller {
 
-	function __construct()
+	public function __construct()
+	{		
+		parent::__construct();		
+		$this->load->helper('url');		
+		$this->load->helper(array('form'));
+		$this->load->library("pagination");		
+		$this->load->model('alarmas');
+		$this->load->model('reportes');	
+		$this->load->database();	
+		$this->load->model('model_calentador');
+		$this->load->model('estado_productos');
+	}	
+	/** 
+	ALARMAS CALENTADOR SOLAR
+
+	*/
+	public function index()
 	{
-		parent::__construct();
-		$this->load->helper('url');  
-		$this->load->helper('form');  
-	}
-
-	function index()
-	{  		
-		$this->load->view('login_view');		
-	}
-
-	public function menu(){
 		if($this->session->userdata('logged_in'))
-		{
-			$session_data = $this->session->userdata('logged_in');     
-			$data['nombre'] = $session_data['nombre']; 
-			$perfil = $session_data['perfil_cve_perfil'];    
-			if($perfil==1){//condición para mostrar la vista del administrador 
-				$data['contenido']='productos_view';
-				$this->load->view('productosAdmin_view', $data);    
-			}
-			else{
-				if ($perfil==2) {//condición para la vista del tecnico
-					$data['contenido']='productos_view';
-					$this->load->view('productosTecnico_view', $data);        
-				}				
-			}
-		} 
-		else
-		{
-			//If no session, redirect to login page
-			redirect('login', 'refresh');     
+	   {
+		    $session_data = $this->session->userdata('logged_in');  		    
+			$data = array('nombre'=> $session_data['nombre'] ,'alarmasdia' => $this->alarmas->get_alarmas_cs());			
+			$this->load->view('alarmas_calentador_view',$data);
 		}
+		else
+	   {
+	     //If no session, redirect to login page
+	     redirect('login', 'refresh');     
+	   }
+		
 	}
+	
+	/** 
+	REPORTES CALENTADOR SOLAR
 
-	function logout()
-	{	   
-		$this->session->sess_destroy();
-		redirect('login', 'refresh');
-	}
-
-	public function acuaponico()
+	*/
+	public function index()
 	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='acuaponico_view';
-		$this->load->view('productosAdmin_view',$data); 
+		if($this->session->userdata('logged_in'))
+	    {
+	    	$session_data = $this->session->userdata('logged_in');            
+	      	$data = array('nombre'=> $session_data['nombre']);      
+	      	$this->load->view('reportes_calentador_view',$data);
+	    }
+	    else
+	    {     
+	      	redirect('login', 'refresh');     
+	    }
 	}
+  //////////////////////////////////////////////////
+  	public function pagination() {
+        $session_data = $this->session->userdata('logged_in');
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/reportesCalentador/pagination";
+        $config["total_rows"] = $this->reportes->getNumDatos_cs();
+        $config["per_page"] = 20;
+        $config["uri_segment"] = 3;
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data = array('nombre'=> $session_data['nombre']);
+        $data["results"] = $this->reportes->get_datos_cs($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+ 
+        $this->load->view("reportes_csall_view", $data);
+   }
+   ///////////////////////////////////////////////////  
+   	public function exportar_csv_all()
+  	{    
+    	$this->load->dbutil();
+	    $this->load->helper('download');
+    	$delimiter = ",";
+    	$newline = "\r\n";
+    	$query = $this->reportes->get_alldatos_cs();   
+    	$data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+    	force_download('CSV_Report.csv', $data);     
+  	}    
 
-	public function calentador()
+  	/** 
+	GRÁFICOS CALENTADOR SOLAR
+
+	*/
+    public function index()
+    {                                     
+        $data['registros']= $this->model_calentador->lisEnt();  
+        //$this->load->view('charts',$data);
+        $this->load->view('graphs_calentador_view', $data);
+    }    
+    /** 
+	ESTADO CALENTADOR SOLAR
+
+	*/
+    
+	
+	public function index()
 	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='calentadorSolar_view';
-		$this->load->view('productosAdmin_view',$data); 
-	}
-
-	public function saar()
-	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='saar_view';
-		$this->load->view('productosAdmin_view',$data); 
-	}
-
-	public function users()
-	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='generadorEolico_view';
-		$this->load->view('productosAdmin_view',$data); 
-	}
-
+		if($this->session->userdata('logged_in'))
+	   {
+		    $session_data = $this->session->userdata('logged_in');  		    
+			$data = array('nombre'=> $session_data['nombre'] ,'estados' => $this->estado_productos->get_estado_cs());			
+			$this->load->view('estado_calentador_view',$data);
+		}
+		else
+	   {
+	     //If no session, redirect to login page
+	     redirect('login', 'refresh');     
+	   }
+		
+	}            
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file CONTROL CALENTADOR .php */

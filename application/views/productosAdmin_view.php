@@ -13,72 +13,60 @@
         <!-- Theme style -->
         <link href="<?php echo base_url(); ?>css/AdminLTE.css" rel="stylesheet" type="text/css" />        
     </head>
-    <body class="skin-blue">
+    <body class="skin-blue layout-top-nav">
     <div class="wrapper">
-    <header class="header">            
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top" role="navigation">               
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav">                                                                      
-                        <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header bg-light-blue">
-                                    <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
-                                    <p>
-                                        Jane Doe - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+      <header class="main-header">         
+          <!-- Header Navbar: style can be found in header.less -->
+          <nav class="navbar navbar-static-top" role="navigation">   
+          <h1 class="titulo">Sistema de monitoreo de sistemas Embebidos</h1>                                  
+              <div class="navbar-right">
+                  <ul class="nav navbar-nav">                                                                                          
+                      <!-- User Account: style can be found in dropdown.less -->                        
+                      <li class="dropdown user user-menu">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <i class="glyphicon glyphicon-user"></i>
+                              <span><?php echo $nombre; ?><i class="caret"></i></span>
+                          </a>
+                          <ul class="dropdown-menu">
+                              <!-- User image -->
+                              <li class="user-header bg-light-blue">
+                                  <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                                  <p>
+                                      <?php echo $nombre; ?> - Web Developer
+                                      <small>Member since Nov. 2012</small>
+                                  </p>
+                              </li>                                
+                              <!-- Menu Footer-->
+                              <li class="user-footer">                                    
+                                  <div class="pull-right">
+                                      <a href="c_principal/logout" class="btn btn-default btn-flat">Salir</a>
+                                  </div>
+                              </li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
         </header>
         </div>
       
-      <?php $this->load->view($contenido) ?>
-      <section class="content">
-       <!-- info row -->
-      <div class="row invoice-info">
-          <div class="col-sm-4 invoice-col">              
-              <address>
-                  <strong>TOC Technology Outsourcing Center</strong><br>
-                  Calle México # 34,Colonia Pumar<br>
-                  Xalapa , Veracruz<br>
-                  Teléfono: </abbr> +052 (228) 8419919<br/>
-                  Email: <a href="mailto:#">contacto@tocveracruz.com.mx</a>
-              </address>
-          </div><!-- /.col -->          
-      </div><!-- /.row -->
-    </section> 
+      <?php $this->load->view($contenido) ?>  
+
+      <div class="container">
+        <section class="content">     
+          <div class="row">
+            <div class="col-lg-4">
+              <img src="<?php echo base_url();?>img/logos/TOClogo.png" alt="..." class="margin">
+            </div>
+            <div class="col-lg-4">
+              <img src="<?php echo base_url();?>img/logos/uv.jpg" alt="..." class="margin">
+            </div>
+            <div class="col-lg-4">
+              <img src="<?php echo base_url();?>img/logos/mis.jpg" alt="..." class="margin">
+            </div>
+          </div>
+        </section>
+      </div>    
    <!-- jQuery 2.0.2 -->
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
       <!-- Bootstrap -->

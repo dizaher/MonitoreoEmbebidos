@@ -3402,3 +3402,9 @@ fieldset[disabled] .btn-vk.active {
   color: #587ea3;
   background-color: #ffffff;
 }
+.titulo{
+  color: #ffffff;
+  float: left;
+  margin-top: 3px;
+  margin-left: 15px;
+}

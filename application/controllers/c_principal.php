@@ -48,7 +48,7 @@ class C_principal extends CI_Controller {
 	{
 		$session_data = $this->session->userdata('logged_in');     
 		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='acuaponico_view';
+		$data['contenido']='Acuaponia/acuaponico_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
 
@@ -56,7 +56,7 @@ class C_principal extends CI_Controller {
 	{
 		$session_data = $this->session->userdata('logged_in');     
 		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='calentadorSolar_view';
+		$data['contenido']='Calentador/calentadorSolar_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
 
@@ -64,7 +64,7 @@ class C_principal extends CI_Controller {
 	{
 		$session_data = $this->session->userdata('logged_in');     
 		$data['nombre'] = $session_data['nombre'];
-		$data['contenido']='saar_view';
+		$data['contenido']='Saar/saar_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
 
