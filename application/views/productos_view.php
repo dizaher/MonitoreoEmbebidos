@@ -10,7 +10,7 @@
                       </h3>                      
                   </div>                 
                   <img style="width: 200px; height: 180px;" src="<?php echo base_url();?>img/icons/calentador.png"></img>
-                  <a href="<?php echo site_url('cprincipal/calentador') ?>" class="small-box-footer">
+                  <a href="<?php echo site_url('c_principal/calentador') ?>" class="small-box-footer">
                       Consultar<i class="fa fa-arrow-circle-right"></i>
                   </a>                  
               </div>
@@ -24,7 +24,7 @@
                       </h3>                      
                   </div>                  
                   <img style="width: 200px; height: 180px;" src="<?php echo base_url();?>img/icons/acuaponia.png"></img>
-                  <a href="<?php echo site_url('cprincipal/acuaponico') ?>" class="small-box-footer">
+                  <a href="<?php echo site_url('c_principal/acuaponico') ?>" class="small-box-footer">
                       Consultar<i class="fa fa-arrow-circle-right"></i>
                   </a>                  
               </div>
@@ -38,7 +38,7 @@
                       </h3>                      
                   </div>
                   <img style="width: 200px; height: 180px;" alt="" src="<?php echo base_url();?>img/icons/agua.png">                  
-                  <a href="<?php echo site_url('cprincipal/saar') ?>" class="small-box-footer">
+                  <a href="<?php echo site_url('c_principal/saar') ?>" class="small-box-footer">
                       Consultar<i class="fa fa-arrow-circle-right"></i>
                   </a>                  
               </div>
@@ -52,7 +52,7 @@
                       </h3>                      
                   </div>                  
                   <img style="width: 200px; height: 180px;" alt="" src="<?php echo base_url();?>img/icons/person.png">
-                  <a href="<?php echo site_url('cprincipal/users') ?>" class="small-box-footer">
+                  <a href="<?php echo site_url('c_principal/users') ?>" class="small-box-footer">
                       Administrar<i class="fa fa-arrow-circle-right"></i>
                   </a>
               </div>
