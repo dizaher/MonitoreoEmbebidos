@@ -20,16 +20,9 @@ class C_principal extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');     
 			$data['nombre'] = $session_data['nombre']; 
 			$perfil = $session_data['perfil_cve_perfil'];    
-			if($perfil==1){//condición para mostrar la vista del administrador 
-				$data['contenido']='productos_view';
-				$this->load->view('productosAdmin_view', $data);    
-			}
-			else{
-				if ($perfil==2) {//condición para la vista del tecnico
-					$data['contenido']='productos_view';
-					$this->load->view('productosTecnico_view', $data);        
-				}				
-			}
+			
+			$data['contenido']='productos_view';
+			$this->load->view('productosAdmin_view', $data);        
 		} 
 		else
 		{
