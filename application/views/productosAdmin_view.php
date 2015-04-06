@@ -59,7 +59,7 @@
               <img src="<?php echo base_url();?>img/logos/TOClogo.png" alt="..." class="margin">
             </div>
             <div class="col-lg-4">
-              <img src="<?php echo base_url();?>img/logos/uv.jpg" alt="..." class="margin">
+              <img src="<?php echo base_url();?>img/logos/uv.png" alt="..." class="margin">
             </div>
             <div class="col-lg-4">
               <img src="<?php echo base_url();?>img/logos/mis.jpg" alt="..." class="margin">

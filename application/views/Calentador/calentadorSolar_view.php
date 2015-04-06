@@ -1,5 +1,6 @@
 <div class="container">
-  <section class="content">     
+    <h1 class="text-light-blue">Calentador Solar</h1>
+  <section class="content">         
     <a href="<?php echo site_url('c_principal/menu') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
       <div class="row">        
         <div class="col-lg-6 col-xs-6">
