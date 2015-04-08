@@ -3408,3 +3408,8 @@ fieldset[disabled] .btn-vk.active {
   margin-top: 3px;
   margin-left: 15px;
 }
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto ;
+}
