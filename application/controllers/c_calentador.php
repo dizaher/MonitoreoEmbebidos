@@ -18,7 +18,7 @@ class C_calentador extends CI_Controller {
 	ALARMAS CALENTADOR SOLAR
 
 	*/
-	public function index()
+	public function alarmascs()
 	{
 		if($this->session->userdata('logged_in'))
 	   {
@@ -38,13 +38,14 @@ class C_calentador extends CI_Controller {
 	REPORTES CALENTADOR SOLAR
 
 	*/
-	public function index()
+	public function reportescs()
 	{
 		if($this->session->userdata('logged_in'))
 	    {
 	    	$session_data = $this->session->userdata('logged_in');            
-	      	$data = array('nombre'=> $session_data['nombre']);      
-	      	$this->load->view('reportes_calentador_view',$data);
+	      	$data = array('nombre'=> $session_data['nombre']); 
+	      	$data['contenido']='Calentador/reportes_calentador_view';
+			$this->load->view('productosAdmin_view',$data);     	      	
 	    }
 	    else
 	    {     
@@ -85,7 +86,7 @@ class C_calentador extends CI_Controller {
 	GRÁFICOS CALENTADOR SOLAR
 
 	*/
-    public function index()
+    public function graficoscs()
     {                                     
         $data['registros']= $this->model_calentador->lisEnt();  
         //$this->load->view('charts',$data);
@@ -97,7 +98,7 @@ class C_calentador extends CI_Controller {
 	*/
     
 	
-	public function index()
+	public function estadocs()
 	{
 		if($this->session->userdata('logged_in'))
 	   {

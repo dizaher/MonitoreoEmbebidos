@@ -2,26 +2,7 @@
     <h1 class="text-light-blue">SAAR</h1>  
   <section class="content">      
     <a href="<?php echo site_url('c_principal/menu') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
-      <div class="row">        
-        <div class="col-lg-6 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                    <h3>
-                        Alarmas
-                    </h3>
-                    <p>
-                        New Orders
-                    </p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-ios7-bell"></i>
-                </div>
-                <a href="<?php echo site_url('alarmas_calentador') ?>" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div><!-- ./col -->
+      <div class="row">                
         <div class="col-lg-6 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-green">

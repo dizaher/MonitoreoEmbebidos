@@ -11,14 +11,14 @@
                         Alarmas
                     </h3>
                     <p>
-                        New Orders
+                        Muestra las alarmas generadas durante el día o <br>por algún rango de fechas.
                     </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-ios7-bell"></i>
                 </div>
                 <a href="<?php echo site_url('alarmas_calentador') ?>" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                    Consultar<i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div><!-- ./col -->
@@ -30,13 +30,13 @@
                         Reportes
                     </h3>
                     <p>
-                        Bounce Rate
+                        Genera un historial diario o por rango de fechas de los datos <br>mandados por la máquina mayor.
                     </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-clipboard"></i>
                 </div>
-                <a href="<?php echo site_url('reportesCalentador') ?>" class="small-box-footer">
+                <a href="<?php echo site_url('c_calentador/reportescs') ?>" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -49,7 +49,7 @@
                         Gráficos
                     </h3>
                     <p>
-                        User Registrations
+                        Observa el comportamiento de cada uno de tus sistemas viendo los <br>datos recolectados en tiempo real.
                     </p>
                 </div>
                 <div class="icon">
@@ -68,7 +68,7 @@
                         Estado
                     </h3>
                     <p>
-                        Unique Visitors
+                        Comprueba el estado de tu sistema, visualizando cada uno de los <br> elementos que tiene instalados.
                     </p>
                 </div>
                 <div class="icon">

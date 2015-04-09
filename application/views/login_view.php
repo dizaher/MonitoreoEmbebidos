@@ -34,11 +34,8 @@
                   </div>
               </div>
               <div class="footer">                                                               
-                  <button type="submit" class="btn bg-olive btn-block">Sign me in</button>  
+                  <button type="submit" class="btn bg-olive btn-block">Sign me in</button>                    
                   
-                  <p><a href="#">I forgot my password</a></p>
-                  
-                  <a href="register.html" class="text-center">Register a new membership</a>
               </div>
           </form>
           
