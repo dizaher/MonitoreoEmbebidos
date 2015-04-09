@@ -11,7 +11,7 @@
                         Alarmas
                     </h3>
                     <p>
-                        Muestra las alarmas generadas durante el día o <br>por algún rango de fechas.
+                        Rangos y diarias
                     </p>
                 </div>
                 <div class="icon">
@@ -30,7 +30,7 @@
                         Reportes
                     </h3>
                     <p>
-                        Genera un historial diario o por rango de fechas de los datos <br>mandados por la máquina mayor.
+                        Rangos y exportar
                     </p>
                 </div>
                 <div class="icon">
@@ -49,7 +49,7 @@
                         Gráficos
                     </h3>
                     <p>
-                        Observa el comportamiento de cada uno de tus sistemas viendo los <br>datos recolectados en tiempo real.
+                        Tiempo real
                     </p>
                 </div>
                 <div class="icon">
@@ -68,7 +68,7 @@
                         Estado
                     </h3>
                     <p>
-                        Comprueba el estado de tu sistema, visualizando cada uno de los <br> elementos que tiene instalados.
+                        Funcionamiento
                     </p>
                 </div>
                 <div class="icon">

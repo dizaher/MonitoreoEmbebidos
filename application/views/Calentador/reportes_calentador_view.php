@@ -1,13 +1,12 @@
-<div class="container">    
+<div class="container">   
+<h1 class="text-light-blue">Reportes Calentador Solar</h1> 
   <section class="content">         
     <a href="<?php echo site_url('c_principal/calentador') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
       <div class="row">  
 		<?php echo form_open('verifyreportescs'); ?>
 			<?php echo validation_errors('<div class="alert alert-error">', '</div>'); ?>
               <div class="box box-primary">
-                <div class="box-header">
-                  <h3 class="box-title">Reportes Calentador Solar</h3>
-                </div>
+                
                 <div class="box-body">
                   <!-- Date range -->  
                   <div class="row">

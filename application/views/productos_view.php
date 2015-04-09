@@ -1,7 +1,7 @@
 <div class="container">
   <section class="content">     
       <div class="row">
-        <div class="col-lg-6 col-xs-6">
+        <div class="col-md-6 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-green">
                   <div class="inner">
@@ -15,7 +15,7 @@
                   </a>                  
               </div>
           </div><!-- ./col -->
-          <div class="col-lg-6 col-xs-6">
+          <div class="col-md-6 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-aqua">
                   <div class="inner">
@@ -29,7 +29,7 @@
                   </a>                  
               </div>
           </div><!-- ./col -->          
-          <div class="col-lg-6 col-xs-6">
+          <div class="col-md-6 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-yellow">
                   <div class="inner">
@@ -43,7 +43,7 @@
                   </a>                  
               </div>
           </div><!-- ./col -->
-          <div class="col-lg-6 col-xs-6">
+          <div class="col-md-6 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-red">
                   <div class="inner">
