@@ -6,6 +6,73 @@ class Model_calentador extends CI_Model
     {
         parent::__construct();
     }
+
+    /**
+  ---------------CONSULTAS DE REPORTES DEL CALENTADOR SOLAR-------------------------------------------------
+  */
+  //consulta para mostrar los primeros 100 datos de mi tabla calentador 
+  public function get_datos_cs($limit,$start)
+  {         
+    $this->db->limit($limit, $start);
+    $query = $this->db->get("toc_calentador_solar");
+
+    if ($query->num_rows() > 0) {
+        foreach ($query->result() as $row) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    return 0;
+  }    
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  public function get_alldatos_cs()
+  {                   
+    $query = $this->db->query("select * from toc_calentador_solar");    
+    return $query;
+  }    
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  public function get_datosconsulta_cs($fechai, $fechaf)
+  {              
+    $fi = date("Y-m-d", strtotime($fechai)).' 00:00:00';    
+    $ff = date("Y-m-d", strtotime($fechaf)).' 23:59:59';     
+    $query = $this->db->query("select * from toc_calentador_solar where fecha_hora between '$fi' and '$ff'");    
+    return $query;
+  }    
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  function getNumDatos_cs()
+  {
+      return $this->db->count_all("toc_calentador_solar");
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  function consultarNumDatos_cs($fechai, $fechaf)
+  {
+      $fi = date("Y-m-d", strtotime($fechai)).' 00:00:00';    
+      $ff = date("Y-m-d", strtotime($fechaf)).' 23:59:59';   
+       
+      $this->db->where("fecha_hora between '$fi' and '$ff'");
+      $cont = $this->db->count_all("toc_calentador_solar");
+      return $cont;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  function consultar_datos_cs($fechai, $fechaf,$limit,$start)
+ {    
+    $fi = date("Y-m-d", strtotime($fechai)).' 00:00:00';    
+    $ff = date("Y-m-d", strtotime($fechaf)).' 23:59:59';   
+   
+    $this->db->where("fecha_hora between '$fi' and '$ff'");    
+    $this->db->limit($limit, $start);
+    $query = $this->db->get("toc_calentador_solar");
+
+    if ($query->num_rows() > 0) {
+        foreach ($query->result() as $row) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    return 0;          
+ }
+
+
     //insertamos un nuevo usuario en la tabla users
     public function insert_datos()
     {   

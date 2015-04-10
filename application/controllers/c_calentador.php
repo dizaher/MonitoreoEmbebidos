@@ -8,12 +8,12 @@ class C_calentador extends CI_Controller {
 		$this->load->helper('url');		
 		$this->load->helper(array('form'));
 		$this->load->library("pagination");		
-		$this->load->model('alarmas');
-		$this->load->model('reportes');	
+		$this->load->model('alarmas');		
 		$this->load->database();	
 		$this->load->model('model_calentador');
 		$this->load->model('estado_productos');
 	}	
+	
 	/** 
 	ALARMAS CALENTADOR SOLAR
 
@@ -38,12 +38,14 @@ class C_calentador extends CI_Controller {
 	REPORTES CALENTADOR SOLAR
 
 	*/
-	public function reportescs()
+	public function reportescs($res = null)
 	{
 		if($this->session->userdata('logged_in'))
 	    {
-	    	$session_data = $this->session->userdata('logged_in');            
+	    	$session_data = $this->session->userdata('logged_in'); 	    	           
 	      	$data = array('nombre'=> $session_data['nombre']); 
+	      	$data['results'] = $res;
+	      	$data['links'] = $res;
 	      	$data['contenido']='Calentador/reportes_calentador_view';
 			$this->load->view('productosAdmin_view',$data);     	      	
 	    }
@@ -56,8 +58,8 @@ class C_calentador extends CI_Controller {
   	public function pagination() {
         $session_data = $this->session->userdata('logged_in');
         $config = array();
-        $config["base_url"] = base_url() . "index.php/reportesCalentador/pagination";
-        $config["total_rows"] = $this->reportes->getNumDatos_cs();
+        $config["base_url"] = base_url() . "index.php/c_calentador/pagination";
+        $config["total_rows"] = $this->model_calentador->getNumDatos_cs();
         $config["per_page"] = 20;
         $config["uri_segment"] = 3;
  
@@ -65,10 +67,10 @@ class C_calentador extends CI_Controller {
  
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data = array('nombre'=> $session_data['nombre']);
-        $data["results"] = $this->reportes->get_datos_cs($config["per_page"], $page);
+        $data["results"] = $this->model_calentador->get_datos_cs($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
- 
-        $this->load->view("reportes_csall_view", $data);
+ 		$data['contenido']='Calentador/reportes_calentador_view';
+        $this->load->view("productosAdmin_view", $data);
    }
    ///////////////////////////////////////////////////  
    	public function exportar_csv_all()
@@ -77,7 +79,7 @@ class C_calentador extends CI_Controller {
 	    $this->load->helper('download');
     	$delimiter = ",";
     	$newline = "\r\n";
-    	$query = $this->reportes->get_alldatos_cs();   
+    	$query = $this->model_calentador->get_alldatos_cs();   
     	$data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
     	force_download('CSV_Report.csv', $data);     
   	}    
