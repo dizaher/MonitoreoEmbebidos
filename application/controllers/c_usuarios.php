@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Heredamos de la clase CI_Controller */
-class Catusuarios extends CI_Controller {
+class C_usuarios extends CI_Controller {
 
   function __construct()
   {
@@ -66,15 +66,11 @@ class Catusuarios extends CI_Controller {
     );
 
     /* Generamos la tabla */
-    $output = $crud->render();
-
-    /* La cargamos en la vista situada en
-    /applications/views/productos/administracion.php */
-    $this->load->view('catusuarios_view', $output);
+    $output = $crud->render();      
 
     }catch(Exception $e){
       /* Si algo sale mal cachamos el error y lo mostramos */
       show_error($e->getMessage().' --- '.$e->getTraceAsString());
     }
-  }
+  } 
 }
