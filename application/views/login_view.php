@@ -23,18 +23,15 @@
               <div class="body bg-gray">
                   <div class="form-group">
                       <label for="exampleInputEmail1">Dirección de correo</label>
-                      <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="<?php echo set_value('username'); ?>">
+                      <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Ingresa email" value="<?php echo set_value('username'); ?>">
                   </div>
                   <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
                       <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value="<?php echo set_value('password'); ?>">
-                  </div>    
-                  <div class="form-group">
-                      <input type="checkbox" name="remember_me"/> Remember me
-                  </div>
+                  </div>                      
               </div>
               <div class="footer">                                                               
-                  <button type="submit" class="btn bg-olive btn-block">Sign me in</button>                    
+                  <button type="submit" class="btn bg-olive btn-block">Iniciar sesión</button>                    
                   
               </div>
           </form>
