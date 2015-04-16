@@ -7,6 +7,7 @@ class C_calentador extends CI_Controller {
 		parent::__construct();		
 		$this->load->helper('url');		
 		$this->load->helper(array('form'));
+		$this->load->library('form_validation');
 		$this->load->library("pagination");		
 		$this->load->model('alarmas');		
 		$this->load->database();	
@@ -38,6 +39,7 @@ class C_calentador extends CI_Controller {
 	REPORTES CALENTADOR SOLAR
 
 	*/
+	///////////////PARA GENERAR LA VISTA DE LOS REPORTES 
 	public function reportescs($res = null)
 	{
 		if($this->session->userdata('logged_in'))
@@ -54,7 +56,7 @@ class C_calentador extends CI_Controller {
 	      	redirect('login', 'refresh');     
 	    }
 	}
-  //////////////////////////////////////////////////
+  /////////////////PARA MOSTRAR TODOS LOS DATOS RECOLECTADOS
   	public function pagination() {
         $session_data = $this->session->userdata('logged_in');
         $config = array();
@@ -72,7 +74,7 @@ class C_calentador extends CI_Controller {
  		$data['contenido']='Calentador/reportes_calentador_view';
         $this->load->view("productosAdmin_view", $data);
    }
-   ///////////////////////////////////////////////////  
+   ////////////////PARA A UN ARCHIVO CSV TODOS LOS DATOS RECOLECTADOS  
    	public function exportar_csv_all()
   	{    
     	$this->load->dbutil();
@@ -82,8 +84,49 @@ class C_calentador extends CI_Controller {
     	$query = $this->model_calentador->get_alldatos_cs();   
     	$data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
     	force_download('CSV_Report.csv', $data);     
-  	}    
+  	} 
 
+  	///////////// PARA GENERAR UN REPORTE POR FECHAS 
+  	public function reportefechas() {
+  		$this->form_validation->set_rules('fechas', 'Rango', 'trim|required');      	
+
+      	if($this->form_validation->run() == FALSE)
+      	{
+        	$this->reportescs();
+      	}
+      	else{
+      		$session_data = $this->session->userdata('logged_in');
+	      	$postfecha = $this->input->post('fechas');     	      	         
+		    $config = array();
+		    $config["base_url"] = base_url() . "index.php/c_calentador/reportefechas";
+		    $config["total_rows"] = $this->model_calentador->consultarNumDatos_cs($postfecha);
+		    $config["per_page"] = 20;
+		    $config["uri_segment"] = 3;
+
+		    $this->pagination->initialize($config);
+
+		    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		    $data = array('nombre'=> $session_data['nombre']);
+		    $data["results"] = $this->model_calentador->consultar_datos_cs($postfecha,$config["per_page"], $page);
+		    $data["links"] = $this->pagination->create_links();
+			$data['contenido']='Calentador/reportes_calentador_view';
+        	$this->load->view("productosAdmin_view", $data);
+		}
+   }
+
+  	//////////// PARA EXPORTAR A UN ARCHIVO CSV EL REPORTE POR FECHAS 
+   	public function exportar_fechas()
+  	{    
+    	$this->load->dbutil();
+	    $this->load->helper('download');
+	    $inicio = $this->session->userdata('from');      
+	    $fin = $this->session->userdata('to');
+	    $delimiter = ",";
+	    $newline = "\r\n";
+	    $query = $this->model_calentador->get_datosconsulta_cs($postfecha);    
+	    $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+	    force_download('CSV_Report.csv', $data);     
+  	}
   	/** 
 	GRÁFICOS CALENTADOR SOLAR
 

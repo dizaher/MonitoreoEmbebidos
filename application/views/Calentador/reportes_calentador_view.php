@@ -2,26 +2,32 @@
 <h1 class="text-light-blue">Reportes Calentador Solar</h1> 
   <section class="content">         
     <a href="<?php echo site_url('c_principal/calentador') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
-      <div class="row">  
-		<?php echo form_open('verifyreportescs'); ?>
-			<?php echo validation_errors('<div class="alert alert-error">', '</div>'); ?>
-              <div class="box box-primary">
-                
+      <div class="row">  		
+              <div class="box box-primary">                
                 <div class="box-body">
                   <!-- Date range -->  
                   <div class="row">
                   	<div class="col-md-6">
 	                  <div class="form-group">
 	                    <label>Reporte por rango de fechas:</label>
+	                    <?php echo form_open('c_calentador/reportefechas'); ?>
+
+	                    <?php if(validation_errors()):?>
+						<div class="alert alert-warning alert-dismissible">
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						  <?php echo validation_errors(); ?>
+						</div>		    
+					    <?php endif;?>
 	                    <div class="input-group">
 	                      <div class="input-group-addon">
 	                        <i class="fa fa-calendar"></i>
 	                      </div>
-	                      <input class="form-control pull-right" id="reservation" type="text">                  		
+	                      <input name="fechas" class="form-control pull-right" id="reservation" type="text">                  		
 	                    </div><!-- /.input group -->       
 	                    <br>             
 	                    <button class="btn btn-block btn-primary">Consultar</button>
-	                  </div><!-- /.form group -->                                    		
+	                    <?php echo form_close(); ?>
+	                  </div><!-- /.form group --> 	                                                     	
                   	</div>
                   	<div class="col-md-6">
                   		 <div class="form-group"> 
@@ -79,8 +85,7 @@
 						<p><?php echo $links; ?></p>
 					<?php } ?>
               	</div>              	
-              </div>                                     		    
-			<?php echo form_close(); ?>			
+              </div>                                     		    					
       </div><!-- /.row -->
       <a href="<?php echo site_url('c_principal/calentador') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
   </section><!-- /.content -->
