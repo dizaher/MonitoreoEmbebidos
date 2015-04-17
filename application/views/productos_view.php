@@ -52,7 +52,7 @@
                       </h3>                      
                   </div>                  
                   <img style="width: 200px; height: 180px;" alt="" src="<?php echo base_url();?>img/icons/person.png">
-                  <a href="<?php echo site_url('c_principal/users') ?>" class="small-box-footer">
+                  <a href="<?php echo site_url('c_usuarios') ?>" class="small-box-footer">
                       Administrar<i class="fa fa-arrow-circle-right"></i>
                   </a>
               </div>

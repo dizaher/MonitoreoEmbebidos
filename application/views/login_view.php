@@ -18,14 +18,15 @@
       <div class="form-box" id="login-box">
           <div class="header">Ingreso a Monitoreo de SE</div>
           <?php echo form_open('c_ingreso'); ?>
-
-          <?php echo validation_errors('<div class="alert alert-error">', '</div>'); ?>          
+                  
               <div class="body bg-gray">
                   <div class="form-group">
+                    <?php echo form_error('username'); ?>
                       <label for="exampleInputEmail1">Dirección de correo</label>
                       <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Ingresa email" value="<?php echo set_value('username'); ?>">
                   </div>
                   <div class="form-group">
+                    <?php echo form_error('password'); ?>
                       <label for="exampleInputPassword1">Password</label>
                       <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value="<?php echo set_value('password'); ?>">
                   </div>                      

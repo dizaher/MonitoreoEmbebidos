@@ -19,7 +19,7 @@ class C_ingreso extends CI_Controller {
    if($this->form_validation->run() == FALSE)
    {
      //Validación de campo fallado. Usuario redirigido a la página iniciar sesión
-     redirect('c_principal');
+     $this->load->view('login_view');
    }
    else
    {

@@ -66,7 +66,7 @@ class C_principal extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');     
 		$data['nombre'] = $session_data['nombre'];
 		$data['contenido']='catusuarios_view';
-		$this->load->view('productosAdmin_view',$data); 
+		$this->load->view('productosAdmin_view',$data);		
 	}
 
 }
