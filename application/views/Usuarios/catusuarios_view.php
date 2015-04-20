@@ -1,28 +1,45 @@
-<div class="container" style="margin-top: 60px;">
-  <div class="row">
-    <div class="col-lg-12">
-      <a href="<?php echo site_url('admin/users/create');?>" class="btn btn-primary">Create user</a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12" style="margin-top: 10px;">
-    <?php
-    if(!empty($users))
-    {
-      echo '<table class="table table-hover table-bordered table-condensed">';
-      echo '<tr><td>ID</td><td>Username</td></td><td>Name</td><td>Email</td></tr>';
-      foreach($users as $user)
-      {
-        echo '<tr>';
-        echo '<td>'.$user->cve_usuario.'</td><td>'.$user->nombre.'</td><td>'.$user->clave.' '.$user->perfil_cve_perfil.'</td></td><td>';
-        echo anchor('admin/users/edit/'.$user->cve_usuario,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('admin/users/delete/'.$user->cve_usuario,'<span class="glyphicon glyphicon-remove"></span>');
-        
-        echo '</td>';
-        echo '</tr>';
-      }
-      echo '</table>';
-    }
-    ?>
-    </div>
-  </div>
+<div class="container">
+    <h1 class="text-light-blue">Administración de Usuarios</h1>
+  <section class="content">         
+    <a href="<?php echo site_url('c_principal/menu') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+      <div class="row">        
+        <div class="col-lg-12">
+          <a href="<?php echo site_url('c_usuarios/create');?>" class="btn btn-primary">Nuevo Usuario</a>
+          
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Usuarios Registrados</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table class="table table-bordered">
+                    <tbody><tr>
+                      <th>Usuario</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Password</th>
+                      <th>Perfil</th>
+                      <th>Acciones</th>
+                    </tr>                    
+                <?php
+                if(!empty($users))
+                {                  
+                  foreach($users as $user)
+                  {
+                    echo '<tr>';
+                    echo '<td>'.$user->u_correo.'</td><td>'.$user->u_nombre.'</td><td>'.$user->u_apellidos.' </td><td>'.$user->u_password.'</td><td>'.$user->u_idperfil.'</td><td>';
+                    echo anchor('admin/users/edit/'.$user->u_correo,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('admin/users/delete/'.$user->u_correo,'<span class="glyphicon glyphicon-remove"></span>');
+                    
+                    echo '</td>';
+                    echo '</tr>';
+                  }          
+                }
+                ?>
+                </tbody>
+              </table>
+            </div><!-- /.box-body -->               
+          </div><!-- /.box -->
+        </div>
+      </div><!-- /.row -->
+      <a href="<?php echo site_url('c_principal/menu') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+  </section><!-- /.content -->
 </div>

@@ -11,7 +11,7 @@ class C_calentador extends CI_Controller {
 		$this->load->library("pagination");		
 		$this->load->model('alarmas');		
 		$this->load->database();	
-		$this->load->model('model_calentador');
+		$this->load->model('m_calentador');
 		$this->load->model('estado_productos');
 	}	
 	
@@ -61,7 +61,7 @@ class C_calentador extends CI_Controller {
         $session_data = $this->session->userdata('logged_in');
         $config = array();
         $config["base_url"] = base_url() . "index.php/c_calentador/pagination";
-        $config["total_rows"] = $this->model_calentador->getNumDatos_cs();
+        $config["total_rows"] = $this->m_calentador->getNumDatos_cs();
         $config["per_page"] = 20;
         $config["uri_segment"] = 3;
  
@@ -69,7 +69,7 @@ class C_calentador extends CI_Controller {
  
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data = array('nombre'=> $session_data['nombre']);
-        $data["results"] = $this->model_calentador->get_datos_cs($config["per_page"], $page);
+        $data["results"] = $this->m_calentador->get_datos_cs($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
  		$data['contenido']='Calentador/reportes_calentador_view';
         $this->load->view("productosAdmin_view", $data);
@@ -81,7 +81,7 @@ class C_calentador extends CI_Controller {
 	    $this->load->helper('download');
     	$delimiter = ",";
     	$newline = "\r\n";
-    	$query = $this->model_calentador->get_alldatos_cs();   
+    	$query = $this->m_calentador->get_alldatos_cs();   
     	$data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
     	force_download('CSV_Report.csv', $data);     
   	} 
@@ -99,7 +99,7 @@ class C_calentador extends CI_Controller {
 	      	$postfecha = $this->input->post('fechas');     	      	         
 		    $config = array();
 		    $config["base_url"] = base_url() . "index.php/c_calentador/reportefechas";
-		    $config["total_rows"] = $this->model_calentador->consultarNumDatos_cs($postfecha);
+		    $config["total_rows"] = $this->m_calentador->consultarNumDatos_cs($postfecha);
 		    $config["per_page"] = 20;
 		    $config["uri_segment"] = 3;
 
@@ -107,7 +107,7 @@ class C_calentador extends CI_Controller {
 
 		    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		    $data = array('nombre'=> $session_data['nombre']);
-		    $data["results"] = $this->model_calentador->consultar_datos_cs($postfecha,$config["per_page"], $page);
+		    $data["results"] = $this->m_calentador->consultar_datos_cs($postfecha,$config["per_page"], $page);
 		    $data["links"] = $this->pagination->create_links();
 			$data['contenido']='Calentador/reportes_calentador_view';
         	$this->load->view("productosAdmin_view", $data);
@@ -123,7 +123,7 @@ class C_calentador extends CI_Controller {
 	    $fin = $this->session->userdata('to');
 	    $delimiter = ",";
 	    $newline = "\r\n";
-	    $query = $this->model_calentador->get_datosconsulta_cs($postfecha);    
+	    $query = $this->m_calentador->get_datosconsulta_cs($postfecha);    
 	    $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
 	    force_download('CSV_Report.csv', $data);     
   	}
@@ -133,7 +133,7 @@ class C_calentador extends CI_Controller {
 	*/
     public function graficoscs()
     {                                     
-        $data['registros']= $this->model_calentador->lisEnt();  
+        $data['registros']= $this->m_calentador->lisEnt();  
         //$this->load->view('charts',$data);
         $this->load->view('graphs_calentador_view', $data);
     }    
