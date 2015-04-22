@@ -13,7 +13,7 @@ class C_ingreso extends CI_Controller {
    //El método tiene la validación de credenciales o usuarios
    $this->load->library('form_validation');
 
-   $this->form_validation->set_rules('username', 'Nombre de usuario', 'trim|required|xss_clean|max_length[15]|callback_check_rol');
+   $this->form_validation->set_rules('username', 'Nombre de usuario', 'trim|required|xss_clean|callback_check_rol');
    $this->form_validation->set_rules('password', 'Contraseña', 'trim|required|xss_clean|callback_check_database|max_length[15]');
 
    if($this->form_validation->run() == FALSE)
@@ -43,9 +43,9 @@ class C_ingreso extends CI_Controller {
      foreach($result as $row)
      {
        $sess_array = array(
-         'cve_usuario' => $row->cve_usuario,
-         'nombre' => $row->nombre,
-         'perfil_cve_perfil' => $row->perfil_cve_perfil
+         'cve_usuario' => $row->u_correo,
+         'nombre' => $row->u_nombre,
+         'perfil_cve_perfil' => $row->u_idperfil
        );
        $this->session->set_userdata('logged_in', $sess_array);
      }

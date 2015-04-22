@@ -23,7 +23,7 @@
                   <div class="form-group">
                     <?php echo form_error('username'); ?>
                       <label for="exampleInputEmail1">Dirección de correo</label>
-                      <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Ingresa email" value="<?php echo set_value('username'); ?>">
+                      <input type="email" name="username" class="form-control" id="exampleInputEmail1" placeholder="Ingresa email" value="<?php echo set_value('username'); ?>">
                   </div>
                   <div class="form-group">
                     <?php echo form_error('password'); ?>

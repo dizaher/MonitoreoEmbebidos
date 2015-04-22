@@ -22,10 +22,10 @@ Class M_usuarios extends CI_Model
 }
  function login($username, $password)
  {
-   $this -> db -> select('cve_usuario, nombre, clave, perfil_cve_perfil');
-   $this -> db -> from('usuarios');
-   $this -> db -> where('nombre', $username);
-   $this -> db -> where('clave', $password);
+   $this -> db -> select('u_correo, u_nombre, u_password, u_idperfil');
+   $this -> db -> from('toc_usuarios');
+   $this -> db -> where('u_correo', $username);
+   $this -> db -> where('u_password', $password);
    $this -> db -> limit(1);
 
    $query = $this -> db -> get();
