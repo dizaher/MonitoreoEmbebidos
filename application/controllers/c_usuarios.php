@@ -51,15 +51,11 @@ class C_usuarios extends CI_Controller {
     {      
       $email = $this->input->post('email');
       $password = $this->input->post('password');      
-
-      $additional_data = array(
-        'first_name' => $this->input->post('first_name'),
-        'last_name' => $this->input->post('last_name'),
-        'perfil' => $this->input->post('perfil'),
-        'phone' => $this->input->post('phone')
-      );
-      $this->m_usuarios->register($email,$password,$additional_data);
-      $this->session->set_flashdata('message',$this->m_usuarios->messages());
+      $first_name = $this->input->post('first_name');
+      $last_name = $this->input->post('last_name');
+      $perfil = $this->input->post('perfil');
+      $phone = $this->input->post('phone');
+      $this->m_usuarios->new_user($email,$password,$first_name,$last_name,$perfil,$phone);      
       redirect('c_usuarios','refresh');
     }
   }

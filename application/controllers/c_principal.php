@@ -27,14 +27,14 @@ class C_principal extends CI_Controller {
 		else
 		{
 			//If no session, redirect to login page
-			redirect('login', 'refresh');     
+			redirect('c_principal', 'refresh');     
 		}
 	}
 
 	function logout()
 	{	   
 		$this->session->sess_destroy();
-		redirect('login', 'refresh');
+		redirect('c_principal', 'refresh');
 	}
 
 	public function acuaponico()
