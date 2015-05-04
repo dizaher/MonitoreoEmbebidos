@@ -21,25 +21,21 @@ Class M_usuarios extends CI_Model
     }
     return $return;
 }
- function login($username, $password)
- {
-   $this -> db -> select('u_correo, u_nombre, u_password, u_idperfil');
-   $this -> db -> from('toc_usuarios');
-   $this -> db -> where('u_correo', $username);
-   $this -> db -> where('u_password', $password);
-   $this -> db -> limit(1);
-
-   $query = $this -> db -> get();
-
-   if($query -> num_rows() == 1)
-   {    
-     return $query->result();
-   }
-   else
-   {
-     return false;
-   }
- }
+ function busca_user($username)
+    {
+        $this -> db -> select('u_correo, u_nombre, u_password, u_idperfil');
+        $this -> db -> from('toc_usuarios');
+        $this -> db -> where('u_correo', $username);          
+        $query = $this -> db -> get();
+        if($query -> num_rows() == 1)
+        {    
+          return $query->result();
+        }
+        else
+        {
+          return false;
+        }
+    }
  function users(){
   $query = $this->db->get('toc_usuarios');
     if($query->num_rows() > 0 )
@@ -76,7 +72,7 @@ Class M_usuarios extends CI_Model
             'u_nombre' => $first_name,
             'u_apellidos' => $last_name,
             'u_correo' => $email,
-            'u_password' => $this->encrypt->encode($password),
+            'u_password' => md5($password),
             'u_telefono' => $phone,
             'u_idperfil' => $perfil            
         );
