@@ -19,7 +19,8 @@ class C_principal extends CI_Controller {
 		{
 			$session_data = $this->session->userdata('logged_in');     
 			$data['nombre'] = $session_data['nombre']; 
-			$perfil = $session_data['perfil_cve_perfil'];    
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];    
 			
 			$data['contenido']='productos_view';
 			$this->load->view('productosAdmin_view', $data);        

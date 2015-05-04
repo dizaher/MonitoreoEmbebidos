@@ -33,11 +33,10 @@
                           </a>
                           <ul class="dropdown-menu">
                               <!-- User image -->
-                              <li class="user-header bg-light-blue">
-                                  <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                              <li class="user-header bg-light-blue">                                  
                                   <p>
-                                      <?php echo $nombre; ?> - Web Developer
-                                      <small>Member since Nov. 2012</small>
+                                      <?php echo $correo; ?>
+                                      <small><?php echo $perfil; ?></small>
                                   </p>
                               </li>                                
                               <!-- Menu Footer-->

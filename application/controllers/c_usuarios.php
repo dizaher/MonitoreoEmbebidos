@@ -9,12 +9,12 @@ class C_usuarios extends CI_Controller {
     $this->load->model('m_usuarios');    
   }
  
-  public function index($group_id = NULL)
+  public function index()
   {
     if($this->session->userdata('logged_in'))
      {
         $session_data = $this->session->userdata('logged_in');          
-        $data['users'] = $this->m_usuarios->users($group_id);
+        $data['users'] = $this->m_usuarios->users();
         $data['contenido'] = 'Usuarios/catusuarios_view';
         $data['nombre'] = $session_data['nombre'];
         $this->load->view('productosAdmin_view', $data);                  
@@ -55,8 +55,10 @@ class C_usuarios extends CI_Controller {
       $last_name = $this->input->post('last_name');
       $perfil = $this->input->post('perfil');
       $phone = $this->input->post('phone');
-      $this->m_usuarios->new_user($email,$password,$first_name,$last_name,$perfil,$phone);      
-      redirect('c_usuarios','refresh');
+      $this->m_usuarios->new_user($email,$password,$first_name,$last_name,$perfil,$phone);
+      $uri = 'c_usuarios';
+      echo "<script>javascript:alert('Usuario registrado'); window.location = '".$uri."'</script>";      
+      //redirect('c_usuarios','refresh');
     }
   }
  

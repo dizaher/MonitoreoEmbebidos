@@ -24,7 +24,9 @@ class C_ingreso extends CI_Controller {
    else
    {
      //Go to private area
-     redirect('c_principal/menu');
+     $uri = 'c_principal/menu';
+    echo "<script>javascript:alert('Bienvenido'); window.location = '".$uri."'</script>";    
+     //redirect('c_principal/menu');
    }
 
  }
@@ -46,7 +48,7 @@ class C_ingreso extends CI_Controller {
           $sess_array = array(
          'cve_usuario' => $row->u_correo,
          'nombre' => $row->u_nombre,
-         'perfil_cve_perfil' => $row->u_idperfil
+         'perfil_cve_perfil' => $row->p_descripcion
        );
        $this->session->set_userdata('logged_in', $sess_array);         
           return TRUE;  
