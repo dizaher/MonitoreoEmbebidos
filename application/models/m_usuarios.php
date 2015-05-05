@@ -57,5 +57,24 @@ Class M_usuarios extends CI_Model
     );
     return $this->db->insert('toc_usuarios', $data);  
   }
+  ///////////////////////////////////////////////////////
+  public function user($id = NULL)
+  {
+    //if no id was passed use the current users id
+    $id || $id = $this->session->userdata('user_id');
+
+    $this->db->limit(1);    
+    $this->db->where('u_correo', $id);    
+
+    return $this->db->get('toc_usuarios');
+  }
+  ////////////////////////////////////////////////
+  public function update($id, array $data)
+  {    
+
+    //$user = $this->user($id)->row();
+    $this->db->where('u_correo', $id);
+    $this->db->update('toc_usuarios', $data); 
+  }
 }
 ?>

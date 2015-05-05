@@ -16,7 +16,9 @@ class C_usuarios extends CI_Controller {
         $session_data = $this->session->userdata('logged_in');          
         $data['users'] = $this->m_usuarios->users();
         $data['contenido'] = 'Usuarios/catusuarios_view';
-        $data['nombre'] = $session_data['nombre'];
+        $data['nombre'] = $session_data['nombre'];        
+        $data['correo'] = $session_data['cve_usuario'];
+        $data['perfil'] = $session_data['perfil_cve_perfil'];
         $this->load->view('productosAdmin_view', $data);                  
       
     }
@@ -64,72 +66,52 @@ class C_usuarios extends CI_Controller {
  
   public function edit($user_id = NULL)
   {
-    $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
+    $data['perfiles'] = $this->m_usuarios->get_perfil_dropdown();
+    $user_id = $this->input->post('user_correo') ? $this->input->post('user_correo') : $user_id;
     $this->data['page_title'] = 'Edit user';
     $this->load->library('form_validation');
+    
+    $this->form_validation->set_rules('first_name','Nombre','trim|required');
+    $this->form_validation->set_rules('last_name','Apellidos','trim|required');    
+    $this->form_validation->set_rules('phone','Teléfono','trim|required');        
+    $this->form_validation->set_rules('password','Password','required');
+    $this->form_validation->set_rules('password_confirm','Password confirmation','required|matches[password]');
+    $this->form_validation->set_rules('perfil','Perfil','trim|required');
 
-    $this->form_validation->set_rules('first_name','First name','trim');
-    $this->form_validation->set_rules('last_name','Last name','trim');
-    $this->form_validation->set_rules('company','Company','trim');
-    $this->form_validation->set_rules('phone','Phone','trim');
-    $this->form_validation->set_rules('username','Username','trim|required');
-    $this->form_validation->set_rules('email','Email','trim|required|valid_email');
-    $this->form_validation->set_rules('password','Password','min_length[6]');
-    $this->form_validation->set_rules('password_confirm','Password confirmation','matches[password]');
-    $this->form_validation->set_rules('groups[]','Groups','required|integer');
-    $this->form_validation->set_rules('user_id','User ID','trim|integer|required');
-
-    if($this->form_validation->run() === FALSE)
+    if($this->form_validation->run() == FALSE)
     {
-      if($user = $this->ion_auth->user((int) $user_id)->row())
+      if($user = $this->m_usuarios->user((int) $user_id)->row())
       {
-        $this->data['user'] = $user;
+        //$this->data['user'] = $user;
+        $data['user'] = $user;
       }
       else
       {
-        $this->session->set_flashdata('message', 'The user doesn\'t exist.');
-        redirect('admin/users', 'refresh');
+        $this->session->set_flashdata('message', 'El usuario no existe.');
+        redirect('c_usuarios', 'refresh');
       }
-      $this->data['groups'] = $this->ion_auth->groups()->result();
-      $this->data['usergroups'] = array();
-      if($usergroups = $this->ion_auth->get_users_groups($user->id)->result())
-      {
-        foreach($usergroups as $group)
-        {
-          $this->data['usergroups'][] = $group->id;
-        }
-      }
+      
       $this->load->helper('form');
-      $this->render('admin/users/edit_user_view');
+      $session_data = $this->session->userdata('logged_in');
+      $data['contenido'] = 'Usuarios/edituser_view';
+      $data['nombre'] = $session_data['nombre'];
+      $this->load->view('productosAdmin_view', $data);
+      //$this->load->view('Usuarios/edituser_view', $this->data);
     }
     else
     {
       $user_id = $this->input->post('user_id');
-      $new_data = array(
-        'username' => $this->input->post('username'),
-        'email' => $this->input->post('email'),
-        'first_name' => $this->input->post('first_name'),
-        'last_name' => $this->input->post('last_name'),
-        'company' => $this->input->post('company'),
-        'phone' => $this->input->post('phone')
+      $new_data = array(        
+        'u_nombre' => $this->input->post('first_name'),
+        'u_apellidos' => $this->input->post('last_name'),        
+        'u_telefono' => $this->input->post('phone'),
+        'u_password' => md5($this->input->post('password')),
+        'u_idperfil' => $this->input->post('perfil')
       );
-      if(strlen($this->input->post('password'))>=6) $new_data['password'] = $this->input->post('password');
-
-      $this->ion_auth->update($user_id, $new_data);
-
-      //Update the groups user belongs to
-      $groups = $this->input->post('groups');
-      if (isset($groups) && !empty($groups))
-      {
-        $this->ion_auth->remove_from_group('', $user_id);
-        foreach ($groups as $group)
-        {
-          $this->ion_auth->add_to_group($group, $user_id);
-        }
-      }
-
-      $this->session->set_flashdata('message',$this->ion_auth->messages());
-      redirect('admin/users','refresh');
+      $this->m_usuarios->update($user_id, $new_data);      
+      $uri = 'c_usuarios';
+      echo "<script>javascript:alert('Usuario actualizado'); window.location = '".$uri."'</script>";
+      
     }
   }
  

@@ -27,7 +27,7 @@
                   {
                     echo '<tr>';
                     echo '<td>'.$user->u_correo.'</td><td>'.$user->u_nombre.'</td><td>'.$user->u_apellidos.' </td><td>'.$user->u_password.'</td><td>'.$user->u_idperfil.'</td><td>';
-                    echo anchor('admin/users/edit/'.$user->u_correo,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('admin/users/delete/'.$user->u_correo,'<span class="glyphicon glyphicon-remove"></span>');
+                    echo anchor('c_usuarios/edit/'.$user->u_correo,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('admin/users/delete/'.$user->u_correo,'<span class="glyphicon glyphicon-remove"></span>');
                     
                     echo '</td>';
                     echo '</tr>';
