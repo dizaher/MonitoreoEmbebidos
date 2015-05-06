@@ -28,8 +28,8 @@
                   {
                     echo '<tr>';
                     echo '<td>'.$user->u_correo.'</td><td>'.$user->u_nombre.'</td><td>'.$user->u_apellidos.' </td><td>'.$user->u_telefono.'</td><td>'.$user->u_password.'</td><td>'.$user->u_idperfil.'</td><td>';
-                    if($current_user->u_correo != $user->u_correo) echo anchor('c_usuarios/edit/'.$user->u_correo,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('admin/users/delete/'.$user->u_correo,'<span class="glyphicon glyphicon-remove"></span>');
-                    else echo '&nbsp;';
+                    echo anchor('c_usuarios/edit/'.$user->u_correo,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('admin/users/delete/'.$user->u_correo,'<span class="glyphicon glyphicon-remove"></span>');
+                    
                     echo '</td>';
                     echo '</tr>';
                   }          

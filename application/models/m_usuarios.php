@@ -61,7 +61,7 @@ Class M_usuarios extends CI_Model
   public function user($id = NULL)
   {
     //if no id was passed use the current users id
-    $id || $id = $this->session->userdata('user_id');
+    $id || $id = $this->session->userdata('cve_usuario');
 
     $this->db->limit(1);    
     $this->db->where('u_correo', $id);    
