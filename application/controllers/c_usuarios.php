@@ -6,14 +6,16 @@ class C_usuarios extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_usuarios');    
+    $this->load->model('m_usuarios'); 
+
   }
  
   public function index()
   {
     if($this->session->userdata('logged_in'))
      {
-        $session_data = $this->session->userdata('logged_in');          
+        $session_data = $this->session->userdata('logged_in');
+        $data['current_user'] = $this->m_usuarios->user()->row();          
         $data['users'] = $this->m_usuarios->users();
         $data['contenido'] = 'Usuarios/catusuarios_view';
         $data['nombre'] = $session_data['nombre'];        
@@ -67,8 +69,7 @@ class C_usuarios extends CI_Controller {
   public function edit($user_id = NULL)
   {
     $data['perfiles'] = $this->m_usuarios->get_perfil_dropdown();
-    $user_id = $this->input->post('user_correo') ? $this->input->post('user_correo') : $user_id;
-    $this->data['page_title'] = 'Edit user';
+    $user_id = $this->input->post('user_correo') ? $this->input->post('user_correo') : $user_id;    
     $this->load->library('form_validation');
     
     $this->form_validation->set_rules('first_name','Nombre','trim|required');
@@ -80,7 +81,7 @@ class C_usuarios extends CI_Controller {
 
     if($this->form_validation->run() == FALSE)
     {
-      if($user = $this->m_usuarios->user((int) $user_id)->row())
+      if($user = $this->m_usuarios->user((string) $user_id)->row())
       {
         //$this->data['user'] = $user;
         $data['user'] = $user;
@@ -109,7 +110,7 @@ class C_usuarios extends CI_Controller {
         'u_idperfil' => $this->input->post('perfil')
       );
       $this->m_usuarios->update($user_id, $new_data);      
-      $uri = 'c_usuarios';
+      $uri = 'c_usuarios/index';
       echo "<script>javascript:alert('Usuario actualizado'); window.location = '".$uri."'</script>";
       
     }

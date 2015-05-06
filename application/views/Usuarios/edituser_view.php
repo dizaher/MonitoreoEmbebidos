@@ -14,7 +14,7 @@
                     <?php
                     echo form_label('Email','email');
                     echo form_error('email');
-                    echo form_input('email',set_value('email',$user->u_correo),'class="form-control"', 'readonly="readonly"');
+                    echo form_input('email',set_value('email',$user->u_correo), 'disabled="" class="form-control"');
                     ?>
                   </div>
                   <div class="form-group">
