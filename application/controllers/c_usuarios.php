@@ -124,9 +124,8 @@ class C_usuarios extends CI_Controller {
     }
     else
     {
-      $this->ion_auth->delete_user($user_id);
-      $this->session->set_flashdata('message',$this->ion_auth->messages());
+      $this->m_usuarios->delete_user($user_id);      
     }
-    redirect('admin/users','refresh');
+    redirect('c_usuarios','refresh');
   }
 }

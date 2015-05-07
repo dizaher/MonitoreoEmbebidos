@@ -38,7 +38,12 @@ Class M_usuarios extends CI_Model
   }
   ////////////////////////////////////////////
   function users(){
-    $query = $this->db->get('toc_usuarios');
+    $this -> db -> select('u_correo, u_nombre, u_password, u_apellidos,u_telefono,p_descripcion');              
+    $this->db->join('toc_perfil', 'toc_usuarios.u_idperfil = toc_perfil.p_idperfil');    
+    $query = $this -> db -> get('toc_usuarios');
+
+
+    //$query = $this->db->get('toc_usuarios');
     if($query->num_rows() > 0 )
     {
       return $query->result();
@@ -75,6 +80,18 @@ Class M_usuarios extends CI_Model
     //$user = $this->user($id)->row();
     $this->db->where('u_correo', $id);
     $this->db->update('toc_usuarios', $data); 
+  }
+  //////////////////////////////////////////////////
+  public function delete_user($id)
+  {    
+    // delete user from users table should be placed after remove from group
+    $this->db->delete('toc_usuarios', array('u_correo' => $id));
+    // if user does not exist in database then it returns FALSE else removes the user from groups
+    if ($this->db->affected_rows() == 0)
+    {
+        return FALSE;
+    }  
+    return TRUE;
   }
 }
 ?>

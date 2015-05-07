@@ -27,8 +27,8 @@
                   foreach($users as $user)
                   {
                     echo '<tr>';
-                    echo '<td>'.$user->u_correo.'</td><td>'.$user->u_nombre.'</td><td>'.$user->u_apellidos.' </td><td>'.$user->u_telefono.'</td><td>'.$user->u_password.'</td><td>'.$user->u_idperfil.'</td><td>';
-                    echo anchor('c_usuarios/edit/'.$user->u_correo,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('admin/users/delete/'.$user->u_correo,'<span class="glyphicon glyphicon-remove"></span>');
+                    echo '<td>'.$user->u_correo.'</td><td>'.$user->u_nombre.'</td><td>'.$user->u_apellidos.' </td><td>'.$user->u_telefono.'</td><td>'.$user->u_password.'</td><td>'.$user->p_descripcion.'</td><td>';
+                    echo anchor('c_usuarios/edit/'.$user->u_correo,'<span class="glyphicon glyphicon-pencil"></span>').' '.anchor('c_usuarios/delete/'.$user->u_correo,'<span class="glyphicon glyphicon-remove"></span>',array('onClick' => "return confirm('Estas seguro de eliminarlo?')"));
                     
                     echo '</td>';
                     echo '</tr>';
