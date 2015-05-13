@@ -7,16 +7,18 @@ class C_acuaponia extends CI_Controller {
 		parent::__construct();		
 		$this->load->helper('url');		
 		$this->load->helper(array('form'));
-		$this->load->database('default');		
-		$this->load->model('alarmas');	
-		$this->load->library("pagination");	
-		$this->load->model('reportes');
+		$this->load->library('form_validation');
+		$this->load->library("pagination");		
+		$this->load->model('alarmas');		
+		$this->load->database();	
+		$this->load->model('m_acuaponia');
+		$this->load->model('estado_productos');
 	}	
 	/** 
 	ALARMAS ACUAPONIA
 
 	*/	
-	public function index()
+	public function alarmasacu()
 	{
 		if($this->session->userdata('logged_in'))
 	   {
@@ -35,26 +37,30 @@ class C_acuaponia extends CI_Controller {
 	/** 
 	REPORTES ACUAPONIA
 
-	*/	
-  public function index()
-  {
-    if($this->session->userdata('logged_in'))
-    {
-      $session_data = $this->session->userdata('logged_in');            
-      $data = array('nombre'=> $session_data['nombre']);      
-      $this->load->view('reportes_acuaponia_view',$data);
-    }
-    else
-    {     
-      redirect('login', 'refresh');     
-    }
-  }
-  //////////////////////////////////////////////////
-  public function pagination() {
+	*/
+	///////////////PARA GENERAR LA VISTA DE LOS REPORTES 
+	public function reportesacu($res = null)
+	{
+		if($this->session->userdata('logged_in'))
+	    {
+	    	$session_data = $this->session->userdata('logged_in'); 	    	           
+	      	$data = array('nombre'=> $session_data['nombre']); 
+	      	$data['results'] = $res;
+	      	$data['links'] = $res;
+	      	$data['contenido']='Acuaponia/reportes_acuaponia_view';
+			$this->load->view('productosAdmin_view',$data);     	      	
+	    }
+	    else
+	    {     
+	      	redirect('login', 'refresh');     
+	    }
+	}
+  /////////////////PARA MOSTRAR TODOS LOS DATOS RECOLECTADOS
+  	public function pagination() {
         $session_data = $this->session->userdata('logged_in');
         $config = array();
-        $config["base_url"] = base_url() . "index.php/reportesAcuaponia/pagination";
-        $config["total_rows"] = $this->reportes->getNumDatos_acu();
+        $config["base_url"] = base_url() . "index.php/c_acuaponia/pagination";
+        $config["total_rows"] = $this->m_acuaponia->getNumDatos_acu();
         $config["per_page"] = 20;
         $config["uri_segment"] = 3;
  
@@ -62,29 +68,70 @@ class C_acuaponia extends CI_Controller {
  
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data = array('nombre'=> $session_data['nombre']);
-        $data["results"] = $this->reportes->get_datos_acu($config["per_page"], $page);
+        $data["results"] = $this->m_acuaponia->get_datos_acu($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
- 
-        $this->load->view("reportes_acuall_view", $data);
+ 		$data['contenido']='Acuaponia/reportes_acuaponia_view';
+        $this->load->view("productosAdmin_view", $data);
    }
-   ///////////////////////////////////////////////////  
-   public function exportar_csv_all()
-  {    
-    $this->load->dbutil();
-    $this->load->helper('download');
-    $delimiter = ",";
-    $newline = "\r\n";
-    $query = $this->reportes->get_alldatos_acu();   
-    $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
-    force_download('CSV_Report.csv', $data);     
-  }         
+   ////////////////PARA A UN ARCHIVO CSV TODOS LOS DATOS RECOLECTADOS  
+   	public function exportar_csv_all()
+  	{    
+    	$this->load->dbutil();
+	    $this->load->helper('download');
+    	$delimiter = ",";
+    	$newline = "\r\n";
+    	$query = $this->m_acuaponia->get_alldatos_acu();   
+    	$data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+    	force_download('CSV_Report.csv', $data);     
+  	} 
 
+  	///////////// PARA GENERAR UN REPORTE POR FECHAS 
+  	public function reportefechas() {
+  		$this->form_validation->set_rules('fechas', 'Rango', 'trim|required');      	
+
+      	if($this->form_validation->run() == FALSE)
+      	{
+        	$this->reportesacu();
+      	}
+      	else{
+      		$session_data = $this->session->userdata('logged_in');
+	      	$postfecha = $this->input->post('fechas');  
+			$session_data = $this->session->set_flashdata('fechas',$postfecha);	      	   	      	         
+		    $config = array();
+		    $config["base_url"] = base_url() . "index.php/c_acuaponia/reportefechas";
+		    $config["total_rows"] = $this->m_acuaponia->consultarNumDatos_acu($postfecha);
+		    $config["per_page"] = 20;
+		    $config["uri_segment"] = 3;
+
+		    $this->pagination->initialize($config);
+
+		    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		    $data = array('nombre'=> $session_data['nombre']);
+		    $data["results"] = $this->m_acuaponia->consultar_datos_acu($postfecha,$config["per_page"], $page);
+		    $data["links"] = $this->pagination->create_links();
+			$data['contenido']='Acuaponia/reportes_acuaponia_view';
+        	$this->load->view("productosAdmin_view", $data);
+		}
+   }
+
+  	//////////// PARA EXPORTAR A UN ARCHIVO CSV EL REPORTE POR FECHAS 
+   	public function exportar_fechas()
+  	{    
+    	$this->load->dbutil();
+	    $this->load->helper('download');
+	    $postfecha = $this->session->flashdata('fechas');      	    
+	    $delimiter = ",";
+	    $newline = "\r\n";
+	    $query = $this->m_acuaponia->get_datosconsulta_acu($postfecha);    
+	    $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+	    force_download('CSV_Report.csv', $data);     
+  	}
   	/** 
 	GRÁFICOS ACUAPONIA
 
 	*/
     
-    public function index()
+    public function graficos()
     {                                     
         $data['registros']= $this->model_calentador->listEntradas();          
         //$this->load->view('charts',$data);
@@ -96,7 +143,7 @@ class C_acuaponia extends CI_Controller {
 	*/
     
 	
-	public function index()
+	public function funcionamiento()
 	{
 		if($this->session->userdata('logged_in'))
 	   {

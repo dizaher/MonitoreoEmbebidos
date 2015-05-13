@@ -36,7 +36,7 @@
                 <div class="icon">
                     <i class="ion ion-clipboard"></i>
                 </div>
-                <a href="<?php echo site_url('reportesAcuaponia') ?>" class="small-box-footer">
+                <a href="<?php echo site_url('c_acuaponia/reportesacu') ?>" class="small-box-footer">
                     Consultar <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

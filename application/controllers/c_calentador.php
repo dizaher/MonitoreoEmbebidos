@@ -96,7 +96,8 @@ class C_calentador extends CI_Controller {
       	}
       	else{
       		$session_data = $this->session->userdata('logged_in');
-	      	$postfecha = $this->input->post('fechas');     	      	         
+	      	$postfecha = $this->input->post('fechas');
+	      	$session_data = $this->session->set_flashdata('fechas',$postfecha);     	      	         
 		    $config = array();
 		    $config["base_url"] = base_url() . "index.php/c_calentador/reportefechas";
 		    $config["total_rows"] = $this->m_calentador->consultarNumDatos_cs($postfecha);
@@ -119,8 +120,7 @@ class C_calentador extends CI_Controller {
   	{    
     	$this->load->dbutil();
 	    $this->load->helper('download');
-	    $inicio = $this->session->userdata('from');      
-	    $fin = $this->session->userdata('to');
+	    $postfecha = $this->session->flashdata('fechas');
 	    $delimiter = ",";
 	    $newline = "\r\n";
 	    $query = $this->m_calentador->get_datosconsulta_cs($postfecha);    
