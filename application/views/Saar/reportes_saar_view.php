@@ -1,7 +1,7 @@
 <div class="container">   
-<h1 class="text-light-blue">Reportes Calentador Solar</h1> 
+<h1 class="text-light-blue">Reportes Sistema de Agua</h1> 
   <section class="content">         
-    <a href="<?php echo site_url('c_principal/calentador') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+    <a href="<?php echo site_url('c_principal/saar') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
       <div class="row">  		
               <div class="box box-primary">                
                 <div class="box-body">
@@ -10,7 +10,7 @@
                   	<div class="col-md-6">
 	                  <div class="form-group">
 	                    <label>Reporte por rango de fechas:</label>
-	                    <?php echo form_open('c_calentador/reportefechas'); ?>
+	                    <?php echo form_open('c_saar/reportefechas'); ?>
 
 	                    <?php if(validation_errors()):?>
 						<div class="alert alert-warning alert-dismissible">
@@ -34,7 +34,7 @@
                   		 <label>Reporte de todos los datos sensados:</label>  
                   		 <br>
 
-		                  	<a href="<?php echo site_url('c_calentador/pagination') ?>" class="btn btn-block btn-default">
+		                  	<a href="<?php echo site_url('c_saar/pagination') ?>" class="btn btn-block btn-default">
 		                  		<i class="fa fa-table"></i> Consultar Todos
 		                  	</a>                  	
 		                  </div>
@@ -49,26 +49,24 @@
               			echo $results;
               		}
               		else{              			
-	              		if (isset($_POST['fechas'])) {              				              		
+              			if (isset($_POST['fechas'])) {              				              		
 	              		?>							              		
-	              		<a class="btn btn-primary pull-right" href="<?php echo site_url('c_calentador/exportar_fechas') ?>"><i class="fa fa-download"></i> Exportar CSV</a>
+	              		<a class="btn btn-primary pull-right" href="<?php echo site_url('c_saar/exportar_fechas') ?>"><i class="fa fa-download"></i> Exportar CSV</a>
 	              		<?php
 	              		}
 	              		else{
 	              		?>
-	              		<a class="btn btn-primary pull-right" href="<?php echo site_url('c_calentador/exportar_csv_all') ?>"><i class="fa fa-download"></i> Exportar CSV</a>
+	              		<a class="btn btn-primary pull-right" href="<?php echo site_url('c_saar/exportar_csv_all') ?>"><i class="fa fa-download"></i> Exportar CSV</a>
 	              		<?php
 	              		}
-	              		?>							              		
+	              		?>
 				    	<table class="table">
 				    		<caption>Resultados de consulta</caption>
 						<tr>
 						    <th>Fecha</th>
-						    <th>Temp 1</th>
-						    <th>Temp 2</th>
-						    <th>Temp 3</th>
-						    <th>Temp 4</th>
-						    <th>Bomba</th>
+						    <th>Flujo</th>
+						    <th>Nivel 1</th>						    
+						    <th>Nivel 2</th>
 						</tr>
 						<?php 
 						if ($results == 0) {
@@ -78,12 +76,10 @@
 
 							foreach($results as $data){ ?>
 							<tr>
-							    <td><?php echo $data->cs_fecha; ?></td>
-							    <td><?php echo $data->cs_temp1; ?></td>
-							    <td><?php echo $data->cs_temp2; ?></td>
-							    <td><?php echo $data->cs_temp3; ?></td>
-							    <td><?php echo $data->cs_temp4; ?></td>
-							    <td><?php echo $data->cs_bomba; ?></td>
+							    <td><?php echo $data->sa_fecha; ?></td>
+							    <td><?php echo $data->sa_flujo; ?></td>
+							    <td><?php echo $data->sa_nivel1; ?></td>
+							    <td><?php echo $data->sa_nivel2; ?></td>							    
 							</tr>
 							 
 							<?php
@@ -96,6 +92,6 @@
               	</div>              	
               </div>                                     		    					
       </div><!-- /.row -->
-      <a href="<?php echo site_url('c_principal/calentador') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+      <a href="<?php echo site_url('c_principal/saar') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
   </section><!-- /.content -->
 </div>		

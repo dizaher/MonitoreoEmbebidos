@@ -36,7 +36,7 @@
                 <div class="icon">
                     <i class="ion ion-clipboard"></i>
                 </div>
-                <a href="<?php echo site_url('c_saar/reportesaar') ?>" class="small-box-footer">
+                <a href="<?php echo site_url('c_saar/reportessa') ?>" class="small-box-footer">
                     Consultar <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
