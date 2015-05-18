@@ -23,7 +23,10 @@ class C_calentador extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in'))
 	   {
-		    $session_data = $this->session->userdata('logged_in');  		    
+		    $session_data = $this->session->userdata('logged_in');     
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];  		    
 			$data = array('nombre'=> $session_data['nombre'] ,'alarmasdia' => $this->alarmas->get_alarmas_cs());			
 			$this->load->view('alarmas_calentador_view',$data);
 		}
@@ -44,8 +47,10 @@ class C_calentador extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in'))
 	    {
-	    	$session_data = $this->session->userdata('logged_in'); 	    	           
-	      	$data = array('nombre'=> $session_data['nombre']); 
+	    	$session_data = $this->session->userdata('logged_in');     
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil']; 
 	      	$data['results'] = $res;
 	      	$data['links'] = $res;
 	      	$data['contenido']='Calentador/reportes_calentador_view';
@@ -67,8 +72,10 @@ class C_calentador extends CI_Controller {
  
         $this->pagination->initialize($config);
  
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data = array('nombre'=> $session_data['nombre']);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;            
+		$data['nombre'] = $session_data['nombre']; 
+		$data['correo'] = $session_data['cve_usuario'];
+		$data['perfil'] = $session_data['perfil_cve_perfil'];
         $data["results"] = $this->m_calentador->get_datos_cs($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
  		$data['contenido']='Calentador/reportes_calentador_view';
@@ -96,6 +103,9 @@ class C_calentador extends CI_Controller {
       	}
       	else{
       		$session_data = $this->session->userdata('logged_in');
+      		$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];
 	      	$postfecha = $this->input->post('fechas');
 	      	$session_data = $this->session->set_flashdata('fechas',$postfecha);     	      	         
 		    $config = array();
@@ -106,8 +116,7 @@ class C_calentador extends CI_Controller {
 
 		    $this->pagination->initialize($config);
 
-		    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-		    $data = array('nombre'=> $session_data['nombre']);
+		    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;		        			
 		    $data["results"] = $this->m_calentador->consultar_datos_cs($postfecha,$config["per_page"], $page);
 		    $data["links"] = $this->pagination->create_links();
 			$data['contenido']='Calentador/reportes_calentador_view';
@@ -131,12 +140,22 @@ class C_calentador extends CI_Controller {
 	GRÁFICOS CALENTADOR SOLAR
 
 	*/
-    public function graficoscs()
-    {                                     
-        $data['registros']= $this->m_calentador->lisEnt();  
-        //$this->load->view('charts',$data);
-        $this->load->view('graphs_calentador_view', $data);
-    }    
+    public function graphs_calentador()
+	{
+		if($this->session->userdata('logged_in'))
+	    {
+	    	$session_data = $this->session->userdata('logged_in');     
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil']; 	      	
+	      	$data['contenido']='';
+			$this->load->view('Calentador/graphs_calentador_view',$data);     	      	
+	    }
+	    else
+	    {     
+	      	redirect('login', 'refresh');     
+	    }
+	}    
     /** 
 	ESTADO CALENTADOR SOLAR
 

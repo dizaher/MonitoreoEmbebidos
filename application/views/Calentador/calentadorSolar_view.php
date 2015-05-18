@@ -55,7 +55,7 @@
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="<?php echo site_url('graphs_calentador') ?>" class="small-box-footer">
+                <a href="<?php echo site_url('c_calentador/graphs_calentador') ?>" class="small-box-footer">
                     Consultar <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

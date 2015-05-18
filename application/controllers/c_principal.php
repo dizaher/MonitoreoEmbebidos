@@ -41,7 +41,9 @@ class C_principal extends CI_Controller {
 	public function acuaponico()
 	{
 		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
+		$data['nombre'] = $session_data['nombre']; 
+		$data['correo'] = $session_data['cve_usuario'];
+		$data['perfil'] = $session_data['perfil_cve_perfil'];
 		$data['contenido']='Acuaponia/acuaponico_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
@@ -49,7 +51,9 @@ class C_principal extends CI_Controller {
 	public function calentador()
 	{
 		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
+		$data['nombre'] = $session_data['nombre']; 
+		$data['correo'] = $session_data['cve_usuario'];
+		$data['perfil'] = $session_data['perfil_cve_perfil'];
 		$data['contenido']='Calentador/calentadorSolar_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
@@ -57,7 +61,9 @@ class C_principal extends CI_Controller {
 	public function saar()
 	{
 		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
+		$data['nombre'] = $session_data['nombre']; 
+		$data['correo'] = $session_data['cve_usuario'];
+		$data['perfil'] = $session_data['perfil_cve_perfil'];
 		$data['contenido']='Saar/saar_view';
 		$this->load->view('productosAdmin_view',$data); 
 	}
@@ -65,7 +71,9 @@ class C_principal extends CI_Controller {
 	public function users()
 	{
 		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre'];
+		$data['nombre'] = $session_data['nombre']; 
+		$data['correo'] = $session_data['cve_usuario'];
+		$data['perfil'] = $session_data['perfil_cve_perfil'];
 		$data['contenido']='catusuarios_view';
 		$this->load->view('productosAdmin_view',$data);		
 	}

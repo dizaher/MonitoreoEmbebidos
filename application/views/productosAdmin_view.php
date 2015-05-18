@@ -14,8 +14,8 @@
         <link href="<?php echo base_url(); ?>css/AdminLTE.css" rel="stylesheet" type="text/css" />   
         <!-- daterange picker -->
         <link href="<?php echo base_url(); ?>css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />             
-        <!-- Bootstrap time Picker -->
-        <link href="<?php echo base_url(); ?>css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>        
+         
+
     </head>
     <body class="skin-blue layout-top-nav">
     <div class="wrapper">
@@ -81,6 +81,19 @@
     <script src="<?php echo base_url(); ?>js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>    
     <!-- bootstrap time picker -->
     <script src="<?php echo base_url(); ?>js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='<?php echo base_url(); ?>js/plugins/fastclick/fastclick.min.js'></script>
+   
+    
+    <!-- FLOT CHARTS -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>        
+
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.pie.min.js" type="text/javascript"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
     
     <!-- Page script -->
     <script type="text/javascript">
@@ -107,6 +120,6 @@
           showInputs: false
         });
       });
-    </script>
+    </script>    
     </body>
 </html>

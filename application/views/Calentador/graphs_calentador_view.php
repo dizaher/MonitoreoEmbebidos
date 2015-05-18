@@ -1,54 +1,238 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
- <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Flot Examples</title>    
+    <head>
+        <meta charset="UTF-8">
+        <title>Monitoreo SE</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="<?php echo base_url(); ?>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="<?php echo base_url(); ?>css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="<?php echo base_url(); ?>css/AdminLTE.css" rel="stylesheet" type="text/css" />   
+        <!-- daterange picker -->
+        <link href="<?php echo base_url(); ?>css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />             
+         
+
+    </head>
+    <body class="skin-blue layout-top-nav">
+    <div class="wrapper">
+      <header class="main-header">         
+          <!-- Header Navbar: style can be found in header.less -->
+          <nav class="navbar navbar-static-top" role="navigation">   
+          <h1 class="titulo">Sistema de monitoreo de sistemas Embebidos</h1>                                  
+              <div class="navbar-right">
+                  <ul class="nav navbar-nav">                                                                                          
+                      <!-- User Account: style can be found in dropdown.less -->                        
+                      <li class="dropdown user user-menu">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <i class="glyphicon glyphicon-user"></i>
+                              <span><?php echo $nombre; ?><i class="caret"></i></span>
+                          </a>
+                          <ul class="dropdown-menu">
+                              <!-- User image -->
+                              <li class="user-header bg-light-blue">                                  
+                                  <p>
+                                      <?php echo $correo; ?>
+                                      <small><?php echo $perfil; ?></small>
+                                  </p>
+                              </li>                                
+                              <!-- Menu Footer-->
+                              <li class="user-footer">                                    
+                                  <div class="pull-right">
+                                      <a href="c_principal/logout" class="btn btn-default btn-flat">Salir</a>
+                                  </div>
+                              </li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+        </header>
+        </div>
+      
+      <div class="container">
+          <h1 class="text-light-blue">Calentador Solar</h1>
+
+        <section class="content">         
+          <a href="<?php echo site_url('c_principal/calentador') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <!-- interactive chart -->
+                    <div class="box box-primary">
+                      <div class="box-header">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <h3 class="box-title">Interactive Area Chart</h3>
+                        <div class="box-tools pull-right">
+                          Real time
+                          <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                            <button type="button" class="btn btn-default btn-xs active" data-toggle="on">On</button>
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="off">Off</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="box-body">
+                        <div id="interactive" style="height: 300px;"></div>
+                      </div><!-- /.box-body-->
+                    </div><!-- /.box -->
+
+                  </div><!-- /.col -->
+                </div><!-- /.row -->
+            <a href="<?php echo site_url('c_principal/calentador') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+        </section><!-- /.content -->
+      </div> 
+
+      <div class="container">
+        <section class="content">     
+          <div class="row">
+            <div class="col-xs-4 col-md-4">
+              <img src="<?php echo base_url();?>img/logos/TOClogo.png" alt="..." class="margin displayed">
+            </div>
+            <div class=" col-xs-4 col-md-4">
+              <img src="<?php echo base_url();?>img/logos/uv.png" alt="..." class="margin displayed">
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <img src="<?php echo base_url();?>img/logos/mis.jpg" alt="..." class="margin displayed">
+            </div>
+          </div>
+        </section>
+      </div>        
+     <!-- jQuery 2.1.3 -->
+    <script src="<?php echo base_url(); ?>js/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="<?php echo base_url(); ?>js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="<?php echo base_url(); ?>js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>    
+    <!-- date-range-picker -->
+    <script src="<?php echo base_url(); ?>js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>    
+    <!-- bootstrap time picker -->
+    <script src="<?php echo base_url(); ?>js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='<?php echo base_url(); ?>js/plugins/fastclick/fastclick.min.js'></script>
+   
     
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/flot/jquery.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/flot/jquery.flot.min.js"></script>
-    <style>
-    #flot-tooltip { font-size: 12px; font-family: Verdana, Arial, sans-serif; position: absolute; display: none; border: 2px solid; padding: 2px; background-color: #FFF; opacity: 0.8; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
-    </style>    
+    <!-- FLOT CHARTS -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>        
 
- </head>
-    <body>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.pie.min.js" type="text/javascript"></script>
+    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+        
+    <script type="text/javascript">
 
-    <h1>Database Plotting</h1>
-    
-    <div id="placeholder" style="width:600px;height:300px;"></div>
+      $(function () {
 
-<script type="text/javascript">
-$(function () {
+        /*
+         * Flot Interactive Chart
+         * -----------------------
+         */
+        // We use an inline data source in the example, usually data would
+        // be fetched from a server
+        var data = [], totalPoints = 100;
+        function getRandomData() {
 
-    var dataset1 = <?php json_encode($registros); ?>;    
+          if (data.length > 0)
+            data = data.slice(1);
 
-   $.plot($("#placeholder"),[dataset1],
-   {
-    series: {
-       points: {
-            show: true,
-            radius: 3
-       },
-       lines: {
+          // Do a random walk
+          while (data.length < totalPoints) {
+
+            var prev = data.length > 0 ? data[data.length - 1] : 50,
+                    y = prev + Math.random() * 10 - 5;
+
+            if (y < 0) {
+              y = 0;
+            } else if (y > 100) {
+              y = 100;
+            }
+
+            data.push(y);
+          }
+
+          // Zip the generated y values with the x values
+          var res = [];
+          for (var i = 0; i < data.length; ++i) {
+            res.push([i, data[i]]);
+          }
+
+          return res;
+        }
+
+        var interactive_plot = $.plot("#interactive", [getRandomData()], {
+          grid: {
+            borderColor: "#f3f3f3",
+            borderWidth: 1,
+            tickColor: "#f3f3f3"
+          },
+          series: {
+            shadowSize: 0, // Drawing is faster without shadows
+            color: "#3c8dbc"
+          },
+          lines: {
+            fill: true, //Converts the line chart to area chart
+            color: "#3c8dbc"
+          },
+          yaxis: {
+            min: 0,
+            max: 100,
             show: true
-       },
-       shadowSize: 0
-        },
-        grid: {
-               color: '#646464',               
-               borderWidth: 1,
-               hoverable: true
-        },
-        xaxis: {
-               tickColor: 'transparent'
-        },        
-   }
-    );
-  // $.plot($("#placeholder"), [JSON.parse(dataset1)]);
+          },
+          xaxis: {
+            show: true
+          }
+        });
 
-});
-</script>
+        var updateInterval = 500; //Fetch data ever x milliseconds
+        var realtime = "on"; //If == to on then fetch data every x seconds. else stop fetching
+        function update() {
 
- </body>
-</html> 
+          interactive_plot.setData([getRandomData()]);
+
+          // Since the axes don't change, we don't need to call plot.setupGrid()
+          interactive_plot.draw();
+          if (realtime === "on")
+            setTimeout(update, updateInterval);
+        }
+
+        //INITIALIZE REALTIME DATA FETCHING
+        if (realtime === "on") {
+          update();
+        }
+        //REALTIME TOGGLE
+        $("#realtime .btn").click(function () {
+          if ($(this).data("toggle") === "on") {
+            realtime = "on";
+          }
+          else {
+            realtime = "off";
+          }
+          update();
+        });
+        /*
+         * END INTERACTIVE CHART
+         */  
+
+      });
+
+      /*
+       * Custom Label formatter
+       * ----------------------
+       */
+      function labelFormatter(label, series) {
+        return "<div style='font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;'>"
+                + label
+                + "<br/>"
+                + Math.round(series.percent) + "%</div>";
+      }
+    </script>
+    </body>
+</html>
+
+
+

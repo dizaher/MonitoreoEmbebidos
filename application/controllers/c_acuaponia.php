@@ -43,8 +43,10 @@ class C_acuaponia extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in'))
 	    {
-	    	$session_data = $this->session->userdata('logged_in'); 	    	           
-	      	$data = array('nombre'=> $session_data['nombre']); 
+	    	$session_data = $this->session->userdata('logged_in');     
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil']; 
 	      	$data['results'] = $res;
 	      	$data['links'] = $res;
 	      	$data['contenido']='Acuaponia/reportes_acuaponia_view';
@@ -66,8 +68,10 @@ class C_acuaponia extends CI_Controller {
  
         $this->pagination->initialize($config);
  
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data = array('nombre'=> $session_data['nombre']);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;        
+		$data['nombre'] = $session_data['nombre']; 
+		$data['correo'] = $session_data['cve_usuario'];
+		$data['perfil'] = $session_data['perfil_cve_perfil'];
         $data["results"] = $this->m_acuaponia->get_datos_acu($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
  		$data['contenido']='Acuaponia/reportes_acuaponia_view';
@@ -95,6 +99,9 @@ class C_acuaponia extends CI_Controller {
       	}
       	else{
       		$session_data = $this->session->userdata('logged_in');
+      		$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];
 	      	$postfecha = $this->input->post('fechas');  
 			$session_data = $this->session->set_flashdata('fechas',$postfecha);	      	   	      	         
 		    $config = array();
@@ -105,8 +112,7 @@ class C_acuaponia extends CI_Controller {
 
 		    $this->pagination->initialize($config);
 
-		    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-		    $data = array('nombre'=> $session_data['nombre']);
+		    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;		      		
 		    $data["results"] = $this->m_acuaponia->consultar_datos_acu($postfecha,$config["per_page"], $page);
 		    $data["links"] = $this->pagination->create_links();
 			$data['contenido']='Acuaponia/reportes_acuaponia_view';
