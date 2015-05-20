@@ -6,6 +6,7 @@ class C_ingreso extends CI_Controller {
  {
    parent::__construct();
    $this->load->model('m_usuarios');
+   $this->load->helper('form');
  }
 
  function index()
@@ -24,12 +25,18 @@ class C_ingreso extends CI_Controller {
    else
    {
      //Go to private area
-     $uri = 'c_principal/menu';
+     $uri = 'c_principal';
     echo "<script>javascript:alert('Bienvenido'); window.location = '".$uri."'</script>";    
      //redirect('c_principal/menu');
    }
 
  }
+
+ function logout()
+  {    
+    $this->session->sess_destroy();
+    $this->load->view('login_view');
+  }
 
  function check_database($password)
  {
@@ -50,7 +57,7 @@ class C_ingreso extends CI_Controller {
          'nombre' => $row->u_nombre,
          'perfil_cve_perfil' => $row->p_descripcion
        );
-       $this->session->set_userdata('logged_in', $sess_array);         
+       $this->session->set_userdata('logueado', $sess_array);         
           return TRUE;  
         }
         else{

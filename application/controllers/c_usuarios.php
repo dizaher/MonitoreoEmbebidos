@@ -12,9 +12,9 @@ class C_usuarios extends CI_Controller {
  
   public function index()
   {
-    if($this->session->userdata('logged_in'))
+    if($this->session->userdata('logueado'))
      {
-        $session_data = $this->session->userdata('logged_in');
+        $session_data = $this->session->userdata('logueado');
         $data['current_user'] = $this->m_usuarios->user()->row();          
         $data['users'] = $this->m_usuarios->users();
         $data['contenido'] = 'Usuarios/catusuarios_view';
@@ -25,10 +25,10 @@ class C_usuarios extends CI_Controller {
       
     }
     else
-     {
-       //If no session, redirect to login page
-       redirect('login', 'refresh');     
-     }
+    {
+      //If no session, redirect to login page
+      redirect('c_ingreso', 'refresh');     
+    } 
   
   }
  

@@ -7,75 +7,97 @@ class C_principal extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');  
 		$this->load->helper('form');  
-	}
+	}	
 
-	function index()
-	{  		
-		$this->load->view('login_view');		
-	}
-
-	public function menu(){
-		if($this->session->userdata('logged_in'))
-		{
-			$session_data = $this->session->userdata('logged_in');     
+	function index(){	
+		if($this->session->userdata('logueado'))
+		{			
+			$session_data = $this->session->userdata('logueado');	
 			$data['nombre'] = $session_data['nombre']; 
 			$data['correo'] = $session_data['cve_usuario'];
 			$data['perfil'] = $session_data['perfil_cve_perfil'];    
 			
 			$data['contenido']='productos_view';
-			$this->load->view('productosAdmin_view', $data);        
-		} 
+			$this->load->view('productosAdmin_view', $data);
+		}		
 		else
 		{
 			//If no session, redirect to login page
-			redirect('c_principal', 'refresh');     
-		}
+			redirect('c_ingreso', 'refresh');     
+		}		        	
 	}
-
-	function logout()
-	{	   
-		$this->session->sess_destroy();
-		redirect('c_principal', 'refresh');
-	}
+	
 
 	public function acuaponico()
-	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre']; 
-		$data['correo'] = $session_data['cve_usuario'];
-		$data['perfil'] = $session_data['perfil_cve_perfil'];
-		$data['contenido']='Acuaponia/acuaponico_view';
-		$this->load->view('productosAdmin_view',$data); 
+	{		   
+		if($this->session->userdata('logueado'))
+		{			
+			$session_data = $this->session->userdata('logueado');	
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];
+			$data['contenido']='Acuaponia/acuaponico_view';
+			$this->load->view('productosAdmin_view',$data);
+		}		
+		else
+		{
+			//If no session, redirect to login page
+			redirect('c_ingreso', 'refresh');     
+		} 
 	}
 
 	public function calentador()
-	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre']; 
-		$data['correo'] = $session_data['cve_usuario'];
-		$data['perfil'] = $session_data['perfil_cve_perfil'];
-		$data['contenido']='Calentador/calentadorSolar_view';
-		$this->load->view('productosAdmin_view',$data); 
+	{		    
+		if($this->session->userdata('logueado'))
+		{			
+			$session_data = $this->session->userdata('logueado');	
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];
+			$data['contenido']='Calentador/calentadorSolar_view';
+			$this->load->view('productosAdmin_view',$data);
+		}		
+		else
+		{
+			//If no session, redirect to login page
+			redirect('c_ingreso', 'refresh');     
+		}		
 	}
 
 	public function saar()
-	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre']; 
-		$data['correo'] = $session_data['cve_usuario'];
-		$data['perfil'] = $session_data['perfil_cve_perfil'];
-		$data['contenido']='Saar/saar_view';
-		$this->load->view('productosAdmin_view',$data); 
+	{		    
+		if($this->session->userdata('logueado'))
+		{			
+			$session_data = $this->session->userdata('logueado');	
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];
+			$data['contenido']='Saar/saar_view';
+			$this->load->view('productosAdmin_view',$data);
+		}		
+		else
+		{
+			//If no session, redirect to login page
+			redirect('c_ingreso', 'refresh');     
+		} 
 	}
 
 	public function users()
-	{
-		$session_data = $this->session->userdata('logged_in');     
-		$data['nombre'] = $session_data['nombre']; 
-		$data['correo'] = $session_data['cve_usuario'];
-		$data['perfil'] = $session_data['perfil_cve_perfil'];
-		$data['contenido']='catusuarios_view';
-		$this->load->view('productosAdmin_view',$data);		
+	{		   
+		if($this->session->userdata('logueado'))
+		{			
+			$session_data = $this->session->userdata('logueado');	
+			$data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];
+			$data['contenido']='catusuarios_view';
+			$this->load->view('productosAdmin_view',$data);
+		}		
+		else
+		{
+			//If no session, redirect to login page
+			redirect('c_ingreso', 'refresh');     
+		} 		
 	}
 
 }

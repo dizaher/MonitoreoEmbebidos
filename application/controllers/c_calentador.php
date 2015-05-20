@@ -45,9 +45,9 @@ class C_calentador extends CI_Controller {
 	///////////////PARA GENERAR LA VISTA DE LOS REPORTES 
 	public function reportescs($res = null)
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logueado'))
 	    {
-	    	$session_data = $this->session->userdata('logged_in');     
+	    	$session_data = $this->session->userdata('logueado');     
 			$data['nombre'] = $session_data['nombre']; 
 			$data['correo'] = $session_data['cve_usuario'];
 			$data['perfil'] = $session_data['perfil_cve_perfil']; 
@@ -58,28 +58,36 @@ class C_calentador extends CI_Controller {
 	    }
 	    else
 	    {     
-	      	redirect('login', 'refresh');     
+	      	redirect('c_ingreso', 'refresh');     
 	    }
 	}
   /////////////////PARA MOSTRAR TODOS LOS DATOS RECOLECTADOS
   	public function pagination() {
-        $session_data = $this->session->userdata('logged_in');
-        $config = array();
-        $config["base_url"] = base_url() . "index.php/c_calentador/pagination";
-        $config["total_rows"] = $this->m_calentador->getNumDatos_cs();
-        $config["per_page"] = 20;
-        $config["uri_segment"] = 3;
- 
-        $this->pagination->initialize($config);
- 
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;            
-		$data['nombre'] = $session_data['nombre']; 
-		$data['correo'] = $session_data['cve_usuario'];
-		$data['perfil'] = $session_data['perfil_cve_perfil'];
-        $data["results"] = $this->m_calentador->get_datos_cs($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
- 		$data['contenido']='Calentador/reportes_calentador_view';
-        $this->load->view("productosAdmin_view", $data);
+  		if($this->session->userdata('logueado'))
+	    {
+	        $session_data = $this->session->userdata('logueado');
+	        $data['nombre'] = $session_data['nombre']; 
+			$data['correo'] = $session_data['cve_usuario'];
+			$data['perfil'] = $session_data['perfil_cve_perfil'];
+			$config = array();
+	        $config["base_url"] = base_url() . "index.php/c_calentador/pagination";
+	        $config["total_rows"] = $this->m_calentador->getNumDatos_cs();
+	        $config["per_page"] = 20;
+	        $config["uri_segment"] = 3;
+	 
+	        $this->pagination->initialize($config);
+	 
+	        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;            
+			
+	        $data["results"] = $this->m_calentador->get_datos_cs($config["per_page"], $page);
+	        $data["links"] = $this->pagination->create_links();
+	 		$data['contenido']='Calentador/reportes_calentador_view';
+	        $this->load->view("productosAdmin_view", $data);
+	    }
+	    else
+	    {     
+	      	redirect('c_ingreso', 'refresh');     
+	    }
    }
    ////////////////PARA A UN ARCHIVO CSV TODOS LOS DATOS RECOLECTADOS  
    	public function exportar_csv_all()
@@ -102,7 +110,7 @@ class C_calentador extends CI_Controller {
         	$this->reportescs();
       	}
       	else{
-      		$session_data = $this->session->userdata('logged_in');
+      		$session_data = $this->session->userdata('logueado');
       		$data['nombre'] = $session_data['nombre']; 
 			$data['correo'] = $session_data['cve_usuario'];
 			$data['perfil'] = $session_data['perfil_cve_perfil'];

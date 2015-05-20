@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="text-light-blue">Administración de Usuarios</h1>
   <section class="content">         
-    <a href="<?php echo site_url('c_principal/menu') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+    <a href="<?php echo site_url('c_principal') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
       <div class="row">        
         <div class="col-lg-12">
           <a href="<?php echo site_url('c_usuarios/create');?>" class="btn btn-primary">Nuevo Usuario</a>
@@ -41,6 +41,6 @@
           </div><!-- /.box -->
         </div>
       </div><!-- /.row -->
-      <a href="<?php echo site_url('c_principal/menu') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+      <a href="<?php echo site_url('c_principal') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
   </section><!-- /.content -->
 </div>
