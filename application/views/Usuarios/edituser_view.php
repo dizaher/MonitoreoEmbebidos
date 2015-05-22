@@ -62,7 +62,7 @@
                   ?>
                 </div>       
                   <?php echo form_hidden('user_id',$user->u_correo);?>
-                  <?php echo form_submit('submit', 'Edit user', 'class="btn btn-primary btn-lg btn-block"');?>
+                  <?php echo form_submit('submit', 'Editar Usuario', 'class="btn btn-primary btn-lg btn-block"');?>
                 <?php echo form_close();?>
             </div><!-- /.box-body -->               
           </div><!-- /.box -->        

@@ -54,10 +54,10 @@
         </div>
       
       <div class="container">
-          <h1 class="text-light-blue">Sistema Acuaponico Chinampero</h1>
+          <h1 class="text-light-blue">Sistema de administración de Agua Residencial</h1>
 
         <section class="content">         
-          <a href="<?php echo site_url('c_principal/acuaponico') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+          <a href="<?php echo site_url('c_principal/saar') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
                 <div class="row">
                   <div class="col-xs-12">
                     <!-- interactive chart -->
@@ -80,7 +80,7 @@
 
                   </div><!-- /.col -->
                 </div><!-- /.row -->
-            <a href="<?php echo site_url('c_principal/acuaponico') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
+            <a href="<?php echo site_url('c_principal/saar') ?>" class="btn btn-app"><i class="fa fa-mail-reply"></i>Regresar</a>
         </section><!-- /.content -->
       </div> 
 
