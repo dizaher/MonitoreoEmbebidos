@@ -67,6 +67,8 @@
 						    <th>Flujo</th>
 						    <th>Nivel 1</th>						    
 						    <th>Nivel 2</th>
+						    <th>Nivel 3</th>
+						    <th>Nivel 4</th>
 						</tr>
 						<?php 
 						if ($results == 0) {
@@ -80,6 +82,8 @@
 							    <td><?php echo $data->sa_flujo; ?></td>
 							    <td><?php echo $data->sa_nivel1; ?></td>
 							    <td><?php echo $data->sa_nivel2; ?></td>							    
+							    <td><?php echo $data->sa_nivel3; ?></td>
+							    <td><?php echo $data->sa_nivel4; ?></td>
 							</tr>
 							 
 							<?php

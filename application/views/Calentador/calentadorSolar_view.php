@@ -17,7 +17,7 @@
                 <div class="icon">
                     <i class="ion ion-ios7-bell"></i>
                 </div>
-                <a href="<?php echo site_url('alarmas_calentador') ?>" class="small-box-footer">
+                <a href="<?php echo site_url('c_calentador/alarmasdiarias') ?>" class="small-box-footer">
                     Consultar<i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
